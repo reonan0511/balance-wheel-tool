@@ -56,6 +56,17 @@ export default function BalanceWheel() {
   const [isAdding, setIsAdding] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [shareMode, setShareMode] = useState(false);
+
+  const enterShareMode = () => {
+    track('share_mode_enter');
+    setShareMode(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const exitShareMode = () => {
+    setShareMode(false);
+  };
 
   // LocalStorage 復元
   useEffect(() => {
@@ -270,8 +281,23 @@ export default function BalanceWheel() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-6">
-        {/* タイトル（通常時） */}
-        <div className="mb-6 print:hidden">
+        {/* シェア表示モードバナー */}
+        {shareMode && (
+          <div className="bg-brand-coral text-white rounded-lg px-4 py-2 mb-4 flex items-center justify-between print:hidden">
+            <button
+              onClick={exitShareMode}
+              className="text-sm font-medium hover:underline flex items-center gap-1"
+            >
+              ← 編集に戻る
+            </button>
+            <span className="text-xs">
+              📤 シェア表示中（このままスクショして送れます）
+            </span>
+          </div>
+        )}
+
+        {/* タイトル（通常時、シェア時は非表示） */}
+        <div className={`mb-6 print:hidden ${shareMode ? 'hidden' : ''}`}>
           <div className="text-center">
             <h1 className="text-2xl md:text-3xl font-bold text-brand-navy mb-2">
               人生の輪（バランスホイール）
@@ -318,16 +344,16 @@ export default function BalanceWheel() {
           )}
         </div>
 
-        {/* 印刷時ヘッダー */}
-        <div className="hidden print:block mb-6 text-center border-b border-slate-400 pb-4">
+        {/* 印刷 / シェア時ヘッダー */}
+        <div className={`mb-6 text-center border-b border-slate-400 pb-4 ${shareMode ? 'block' : 'hidden print:block'}`}>
           <h2 className="text-2xl font-bold">
             {name ? `${name} さんのバランスホイール` : 'バランスホイール'}
           </h2>
           <p className="text-sm mt-1">{formatDateJa(date)} 記入</p>
         </div>
 
-        {/* 名前 + 日付 */}
-        <div className="bg-white rounded-lg p-4 mb-4 shadow-sm print:hidden">
+        {/* 名前 + 日付（シェア時非表示、ヘッダーで代替） */}
+        <div className={`bg-white rounded-lg p-4 mb-4 shadow-sm print:hidden ${shareMode ? 'hidden' : ''}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
@@ -357,7 +383,7 @@ export default function BalanceWheel() {
 
         {/* チャート */}
         <div className="bg-white rounded-lg p-4 mb-4 shadow-sm">
-          <div className="flex items-center justify-center gap-4 mb-3 text-sm print:hidden">
+          <div className={`flex items-center justify-center gap-4 mb-3 text-sm print:hidden ${shareMode ? 'hidden' : ''}`}>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -388,7 +414,7 @@ export default function BalanceWheel() {
           <div className="flex justify-center">
             <svg
               viewBox={`0 0 ${width} ${height}`}
-              className="balance-chart-svg w-full max-w-md h-auto"
+              className={`balance-chart-svg w-full h-auto ${shareMode ? 'max-w-xs' : 'max-w-md'}`}
               preserveAspectRatio="xMidYMid meet"
             >
               {renderScaleLines()}
@@ -443,8 +469,8 @@ export default function BalanceWheel() {
           </div>
         </div>
 
-        {/* スコア入力（編集UI、印刷時非表示） */}
-        <div className="bg-white rounded-lg p-4 mb-4 shadow-sm print:hidden">
+        {/* スコア入力（編集UI、印刷・シェア時非表示） */}
+        <div className={`bg-white rounded-lg p-4 mb-4 shadow-sm print:hidden ${shareMode ? 'hidden' : ''}`}>
           <h3 className="text-lg font-semibold text-brand-navy mb-2">
             各領域のスコア設定
           </h3>
@@ -559,8 +585,8 @@ export default function BalanceWheel() {
           )}
         </div>
 
-        {/* 印刷時スコア表 */}
-        <div className="hidden print:block mb-6">
+        {/* 印刷 / シェア時スコア表 */}
+        <div className={`mb-6 ${shareMode ? 'block' : 'hidden print:block'}`}>
           <h3 className="text-lg font-semibold mb-2">スコア一覧</h3>
           <table className="w-full border-collapse text-sm">
             <thead>
@@ -592,42 +618,78 @@ export default function BalanceWheel() {
           <h3 className="text-lg font-semibold text-brand-navy mb-2 print:text-slate-800">
             気づきメモ
           </h3>
-          <p className="text-xs text-slate-500 mb-2 print:hidden">
+          <p className={`text-xs text-slate-500 mb-2 print:hidden ${shareMode ? 'hidden' : ''}`}>
             現在の数値を入れてみて感じたことや、理想との差が大きい項目について感じたこと、変えたいことを書き留めましょう
           </p>
-          <textarea
-            value={memo}
-            onChange={(e) => setMemo(e.target.value)}
-            placeholder="例: 仕事と心の充実のギャップが大きい。週末に意識的に休む時間を作りたい..."
-            className="w-full border border-slate-300 rounded px-3 py-2 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-brand-navy print:border-slate-300 print:bg-transparent"
-          />
+          {shareMode ? (
+            <div className="text-sm text-slate-700 whitespace-pre-wrap min-h-[60px] border border-slate-200 rounded px-3 py-2 bg-slate-50">
+              {memo || <span className="text-slate-400 italic">（メモなし）</span>}
+            </div>
+          ) : (
+            <textarea
+              value={memo}
+              onChange={(e) => setMemo(e.target.value)}
+              placeholder="例: 仕事と心の充実のギャップが大きい。週末に意識的に休む時間を作りたい..."
+              className="w-full border border-slate-300 rounded px-3 py-2 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-brand-navy print:border-slate-300 print:bg-transparent"
+            />
+          )}
         </div>
 
-        {/* 完了導線 */}
-        <div className="bg-brand-navy text-white rounded-lg p-5 mb-6 print:hidden">
+        {/* シェア時専用: 末尾の編集に戻るボタン */}
+        {shareMode && (
+          <div className="text-center mb-6 print:hidden">
+            <button
+              onClick={exitShareMode}
+              className="text-sm text-brand-navy hover:underline"
+            >
+              ← 編集に戻る
+            </button>
+          </div>
+        )}
+
+        {/* 完了導線（シェア時非表示） */}
+        <div className={`bg-brand-navy text-white rounded-lg p-5 mb-6 print:hidden ${shareMode ? 'hidden' : ''}`}>
           <h3 className="text-lg font-bold mb-3">
             ✨ 入力できたら、コーチに共有しましょう
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <p className="font-semibold mb-1">📱 スマホの方</p>
-              <p className="text-slate-200">
-                スクリーンショットを撮ってコーチに送ってください
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold mb-1">🖨 PCの方</p>
-              <p className="text-slate-200 mb-2">
-                印刷ボタンから PDF として保存・送信できます
-              </p>
-              <button
-                onClick={handlePrint}
-                className="bg-white text-brand-navy px-4 py-2 rounded font-medium hover:bg-slate-100 text-sm"
-              >
-                印刷 / PDF保存
-              </button>
+
+          {/* メイン: シェア表示ボタン */}
+          <button
+            onClick={enterShareMode}
+            className="w-full bg-white text-brand-navy px-4 py-3 rounded-lg font-bold hover:bg-slate-100 mb-2 text-base shadow-md"
+          >
+            📤 シェア表示にする
+          </button>
+          <p className="text-xs text-slate-200 mb-4 leading-relaxed">
+            編集UIを隠して結果だけ表示します。スマホ1スクリーンに収まるので、そのままスクショして送ってください。
+          </p>
+
+          {/* または: 別の保存方法 */}
+          <div className="border-t border-blue-900 pt-3 text-sm">
+            <p className="text-xs text-slate-300 mb-2">または、以下の方法でも保存できます：</p>
+            <div className="space-y-3">
+              <div>
+                <p className="font-semibold mb-1">📱 そのままスクショ</p>
+                <p className="text-xs text-slate-300">
+                  画面が長いので複数枚に分かれることがあります
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold mb-1">🖨 印刷 / PDFで保存（A4 1枚に収まります）</p>
+                <button
+                  onClick={handlePrint}
+                  className="bg-white text-brand-navy px-3 py-1.5 rounded font-medium hover:bg-slate-100 text-xs"
+                >
+                  印刷 / PDF保存
+                </button>
+                <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                  <span className="font-semibold text-slate-200">スマホでも PDF 保存可能：</span>{' '}
+                  上のボタン → プリンタ選択画面で「PDF として保存」または「共有 → ファイルに保存」を選ぶと、PDF として Files / ダウンロードに保存されます。
+                </p>
+              </div>
             </div>
           </div>
+
           <p className="text-xs text-slate-300 mt-4 leading-relaxed">
             入力内容はこの端末のブラウザに自動保存されます。次回開いた時に続きから記入できます。<br />
             <span className="text-slate-400">
@@ -642,8 +704,8 @@ export default function BalanceWheel() {
           </button>
         </div>
 
-        {/* コーチ向けCTA */}
-        <div className="bg-white rounded-lg p-5 shadow-sm print:hidden">
+        {/* コーチ向けCTA（シェア時非表示） */}
+        <div className={`bg-white rounded-lg p-5 shadow-sm print:hidden ${shareMode ? 'hidden' : ''}`}>
           <h3 className="text-base font-semibold text-brand-navy mb-1">
             コーチの方へ
           </h3>
@@ -713,8 +775,8 @@ export default function BalanceWheel() {
           </div>
         </div>
 
-        {/* マガジンCTA（学びを深める） */}
-        <div className="bg-white rounded-lg p-5 shadow-sm mt-4 print:hidden">
+        {/* マガジンCTA（シェア時非表示） */}
+        <div className={`bg-white rounded-lg p-5 shadow-sm mt-4 print:hidden ${shareMode ? 'hidden' : ''}`}>
           <h3 className="text-base font-semibold text-brand-navy mb-1">
             もっと学ぶなら
           </h3>
