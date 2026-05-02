@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* スライダーのアクセントカラー */
+input[type='range'] {
+  accent-color: #002b69;
+}
+
+/* 印刷時のレイアウト最適化 */
+@media print {
+  body {
+    background: white !important;
+    color: #000 !important;
+  }
+  .min-h-screen {
+    min-height: auto !important;
+  }
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+  /* 印刷時はシャドウを消す */
+  .shadow-sm,
+  .shadow,
+  .shadow-md,
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+}
