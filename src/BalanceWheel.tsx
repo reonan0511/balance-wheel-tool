@@ -310,12 +310,15 @@ export default function BalanceWheel() {
                 車輪は、形が真円に近いほどスムーズに転がります。どこか一つでも極端にへこんでいれば、ガタガタと進んでしまう。人生も同じで、一部の領域だけ頑張っても他が弱いと前に進みづらくなります。
               </p>
               <h3 className="font-bold text-brand-navy mb-2">使い方のコツ</h3>
-              <ul className="leading-relaxed list-disc list-inside space-y-1">
+              <ul className="leading-relaxed list-disc list-inside space-y-1 mb-4">
                 <li>「現在」と「理想」の差が大きい領域に注目してみましょう</li>
                 <li>「思っていたより低い / 高い」と感じた領域はありますか?</li>
                 <li>数値そのものより、書きながら浮かんだ気づきを大切に</li>
                 <li>完璧を目指さず、今日感じたままで OK です</li>
               </ul>
+              <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-3">
+                このツールは ICF PCC 認定コーチが、コーチング現場で実際に使うために設計しました。
+              </p>
             </div>
           )}
         </div>
@@ -390,7 +393,7 @@ export default function BalanceWheel() {
           <div className="flex justify-center">
             <svg
               viewBox={`0 0 ${width} ${height}`}
-              className="w-full max-w-md h-auto"
+              className="balance-chart-svg w-full max-w-md h-auto"
               preserveAspectRatio="xMidYMid meet"
             >
               {renderScaleLines()}
@@ -595,7 +598,7 @@ export default function BalanceWheel() {
             気づきメモ
           </h3>
           <p className="text-xs text-slate-500 mb-2 print:hidden">
-            現在と理想の差が大きい項目について感じたこと、変えたいことを書き留めましょう
+            現在の数値を入れてみて感じたことや、理想との差が大きい項目について感じたこと、変えたいことを書き留めましょう
           </p>
           <textarea
             value={memo}
@@ -630,8 +633,11 @@ export default function BalanceWheel() {
               </button>
             </div>
           </div>
-          <p className="text-xs text-slate-300 mt-4">
-            入力内容はこの端末のブラウザに自動保存されます。次回開いた時に続きから記入できます。
+          <p className="text-xs text-slate-300 mt-4 leading-relaxed">
+            入力内容はこの端末のブラウザに自動保存されます。次回開いた時に続きから記入できます。<br />
+            <span className="text-slate-400">
+              ※ ただし、ブラウザのキャッシュ削除・シークレットモードでの利用・別の端末やブラウザでの閲覧では引き継がれません。大切な内容は印刷やスクリーンショットで保存しておくと安心です。
+            </span>
           </p>
           <button
             onClick={handleClear}
@@ -661,10 +667,10 @@ export default function BalanceWheel() {
             >
               <div className="text-2xl mb-2">🧰</div>
               <div className="font-bold text-sm text-brand-navy mb-1">
-                MetaMentor CRM × AI
+                MetaMentor コーチング AI
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                「記録に追われる夜」を終わらせる、AI搭載のコーチ向けCRM
+                日本初のコーチングCRM × AI。対話に集中するための右腕として、セッション後の作業から上達のヒントまでサポート。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で使ってみる →
@@ -682,7 +688,7 @@ export default function BalanceWheel() {
                 セッションマネージャー
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                予約・契約・決済の事務作業を自動化、本業のセッションに時間を戻す
+                予約・スケジュール・記録などのセッション運営タスクを自動化。手動運用から解放され、本業の対話に集中できる。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で使ってみる →
@@ -700,13 +706,45 @@ export default function BalanceWheel() {
                 ウェルビーイング診断
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                クライアントに渡せる、5分で個人・組織の状態を可視化する無料診断
+                早稲田大学・大月友教授（臨床心理士）監修。25因子50問・約5分で、個人/組織のウェルビーイングを可視化（永年無料）。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で診断する →
               </div>
             </a>
           </div>
+        </div>
+
+        {/* マガジンCTA（学びを深める） */}
+        <div className="bg-white rounded-lg p-5 shadow-sm mt-4 print:hidden">
+          <h3 className="text-base font-semibold text-brand-navy mb-1">
+            もっと学ぶなら
+          </h3>
+          <p className="text-xs text-slate-600 mb-3">
+            対人支援の現場で役立つ実践記事を、ウェルビーイング マガジンで配信しています。
+          </p>
+          <a
+            href="https://metamentor.tech/magazine/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track('cta_click', { product: 'magazine' })}
+            className="block border border-slate-200 rounded-lg p-4 hover:border-brand-navy hover:shadow-md transition group"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-3xl flex-shrink-0">📖</div>
+              <div className="flex-1">
+                <div className="font-bold text-sm text-brand-navy mb-1">
+                  WELLBEING MAGAZINE
+                </div>
+                <div className="text-xs text-slate-600 leading-relaxed">
+                  コーチング・ウェルビーイング・対人支援の実践知。論文まとめから現場の事例まで、対人支援者向けに編集された記事を週次で更新中。
+                </div>
+                <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
+                  記事を読む →
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </main>
 

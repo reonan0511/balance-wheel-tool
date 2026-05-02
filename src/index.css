@@ -14,18 +14,19 @@ input[type='range'] {
   accent-color: #002b69;
 }
 
-/* 印刷時のレイアウト最適化 */
+/* 印刷時のレイアウト最適化 (A4 1枚に収める) */
 @media print {
   body {
     background: white !important;
     color: #000 !important;
+    font-size: 10pt;
   }
   .min-h-screen {
     min-height: auto !important;
   }
   @page {
     size: A4;
-    margin: 1.5cm;
+    margin: 0.8cm;
   }
   /* 印刷時はシャドウを消す */
   .shadow-sm,
@@ -33,5 +34,43 @@ input[type='range'] {
   .shadow-md,
   .shadow-lg {
     box-shadow: none !important;
+  }
+  /* メイン余白を圧縮 */
+  main {
+    padding: 0 !important;
+  }
+  /* カード余白を圧縮 */
+  .bg-white {
+    padding: 0.4rem !important;
+    margin-bottom: 0.4rem !important;
+    border: none !important;
+  }
+  /* チャートを縮小 */
+  .balance-chart-svg {
+    max-width: 280px !important;
+    max-height: 280px !important;
+  }
+  /* スコア表のコンパクト化 */
+  table {
+    font-size: 9pt;
+  }
+  table td,
+  table th {
+    padding: 2px 4px !important;
+  }
+  /* 改ページ防止 */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+  table, .balance-chart-svg {
+    page-break-inside: avoid;
+  }
+  /* セクション間の上マージン圧縮 */
+  .mb-4, .mb-6 {
+    margin-bottom: 0.4rem !important;
+  }
+  /* メモ欄高さを圧縮 */
+  textarea {
+    min-height: 80px !important;
   }
 }
