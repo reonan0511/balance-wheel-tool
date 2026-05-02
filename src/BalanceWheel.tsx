@@ -2,6 +2,8 @@ import { useState, useEffect, type JSX } from 'react';
 import { track } from '@vercel/analytics';
 
 const STORAGE_KEY = 'metamentor-balance-wheel-v1';
+const MAX_CATEGORIES = 10;
+const MIN_CATEGORIES = 3;
 
 interface Category {
   name: string;
@@ -29,6 +31,8 @@ const COLORS = [
   '#7E89C5', // ペリウィンクル
   '#D4805F', // コーラル
   '#C9434F', // ラズベリー
+  '#A87FA0', // モーブ
+  '#7BA6C9', // スカイブルー
 ];
 
 const todayString = (): string => {
@@ -144,18 +148,18 @@ export default function BalanceWheel() {
   };
 
   const addCategory = () => {
-    if (newCategoryName.trim() !== '') {
-      setCategories([
-        ...categories,
-        { name: newCategoryName.trim(), currentScore: 5, idealScore: 8 },
-      ]);
-      setNewCategoryName('');
-      setIsAdding(false);
-    }
+    if (newCategoryName.trim() === '') return;
+    if (categories.length >= MAX_CATEGORIES) return;
+    setCategories([
+      ...categories,
+      { name: newCategoryName.trim(), currentScore: 5, idealScore: 8 },
+    ]);
+    setNewCategoryName('');
+    setIsAdding(false);
   };
 
   const removeCategory = (index: number) => {
-    if (categories.length > 3) {
+    if (categories.length > MIN_CATEGORIES) {
       setCategories(categories.filter((_, i) => i !== index));
     }
   };
@@ -230,10 +234,13 @@ export default function BalanceWheel() {
     return lines;
   };
 
+  // 項目数に応じてフォントサイズを動的に
+  const labelFontSize = categories.length <= 8 ? 13 : categories.length === 9 ? 12 : 11;
+
   const renderLabels = () => {
     return categories.map((category, index) => {
       const angle = (2 * Math.PI * index) / categories.length - Math.PI / 2;
-      const labelDistance = radius + 25;
+      const labelDistance = radius + 22;
       const x = centerX + labelDistance * Math.cos(angle);
       const y = centerY + labelDistance * Math.sin(angle);
       let textAnchor: 'start' | 'middle' | 'end' = 'middle';
@@ -249,7 +256,7 @@ export default function BalanceWheel() {
           y={y}
           textAnchor={textAnchor}
           dy={dy}
-          fontSize="13"
+          fontSize={labelFontSize}
           fontWeight="bold"
           fill="#444"
         >
@@ -413,7 +420,7 @@ export default function BalanceWheel() {
 
           <div className="flex justify-center">
             <svg
-              viewBox={`0 0 ${width} ${height}`}
+              viewBox={`-50 -30 ${width + 100} ${height + 60}`}
               className={`balance-chart-svg w-full h-auto ${shareMode ? 'max-w-xs' : 'max-w-md'}`}
               preserveAspectRatio="xMidYMid meet"
             >
@@ -575,13 +582,22 @@ export default function BalanceWheel() {
                 取消
               </button>
             </div>
+          ) : categories.length < MAX_CATEGORIES ? (
+            <div className="mt-4 flex items-center gap-3">
+              <button
+                onClick={() => setIsAdding(true)}
+                className="text-sm text-brand-navy hover:underline"
+              >
+                + 領域を追加
+              </button>
+              <span className="text-xs text-slate-400">
+                （あと {MAX_CATEGORIES - categories.length} 項目まで追加可）
+              </span>
+            </div>
           ) : (
-            <button
-              onClick={() => setIsAdding(true)}
-              className="mt-4 text-sm text-brand-navy hover:underline"
-            >
-              + 領域を追加
-            </button>
+            <p className="mt-4 text-xs text-slate-500">
+              ※ 最大 {MAX_CATEGORIES} 項目まで追加できます。これ以上追加するには、まず既存の項目を削除してください。
+            </p>
           )}
         </div>
 
