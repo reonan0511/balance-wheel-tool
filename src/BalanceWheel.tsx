@@ -253,13 +253,11 @@ export default function BalanceWheel() {
       {/* ヘッダー */}
       <header className="bg-white border-b border-slate-200 print:hidden">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="https://metamentor.tech/" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/metamentor-logo.png"
-              alt="MetaMentor"
-              className="h-8 md:h-10"
-            />
-          </a>
+          <img
+            src="/metamentor-logo.png"
+            alt="MetaMentor"
+            className="h-8 md:h-10"
+          />
           <a
             href="https://metamentor.tech/"
             target="_blank"
@@ -310,15 +308,12 @@ export default function BalanceWheel() {
                 車輪は、形が真円に近いほどスムーズに転がります。どこか一つでも極端にへこんでいれば、ガタガタと進んでしまう。人生も同じで、一部の領域だけ頑張っても他が弱いと前に進みづらくなります。
               </p>
               <h3 className="font-bold text-brand-navy mb-2">使い方のコツ</h3>
-              <ul className="leading-relaxed list-disc list-inside space-y-1 mb-4">
+              <ul className="leading-relaxed list-disc list-inside space-y-1">
                 <li>「現在」と「理想」の差が大きい領域に注目してみましょう</li>
                 <li>「思っていたより低い / 高い」と感じた領域はありますか?</li>
                 <li>数値そのものより、書きながら浮かんだ気づきを大切に</li>
                 <li>完璧を目指さず、今日感じたままで OK です</li>
               </ul>
-              <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-3">
-                このツールは ICF PCC 認定コーチが、コーチング現場で実際に使うために設計しました。
-              </p>
             </div>
           )}
         </div>
@@ -652,10 +647,13 @@ export default function BalanceWheel() {
           <h3 className="text-base font-semibold text-brand-navy mb-1">
             コーチの方へ
           </h3>
-          <p className="text-sm text-slate-700 mb-4">
-            バランスホイール以外にも、コーチの「現場をもっと楽に」を支える
+          <p className="text-sm text-slate-700 mb-1">
+            <span className="text-brand-navy font-bold">ICF PCC 認定コーチが現場で使うために設計</span>した、コーチ業務を楽にする
             <span className="text-brand-coral font-bold text-base">無料</span>
-            のツールを揃えています。気になるものがあればぜひ。
+            のツール群です。
+          </p>
+          <p className="text-xs text-slate-500 mb-4">
+            気になるものがあればぜひ。
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <a
@@ -665,12 +663,12 @@ export default function BalanceWheel() {
               onClick={() => track('cta_click', { product: 'crm' })}
               className="block border border-slate-200 rounded-lg p-4 hover:border-brand-navy hover:shadow-md transition group"
             >
-              <div className="text-2xl mb-2">🧰</div>
+              <div className="text-2xl mb-2">🤖</div>
               <div className="font-bold text-sm text-brand-navy mb-1">
-                MetaMentor コーチング AI
+                コーチング AI
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                日本初のコーチングCRM × AI。対話に集中するための右腕として、セッション後の作業から上達のヒントまでサポート。
+                日本初のコーチングCRM × AI。セッション音声をアップするだけで、AIが<span className="font-semibold text-slate-700">文字起こし・要約・ICFのPCCマーカー分析</span>まで自動化。記録の手間から解放され、AIフィードバックで上達も加速。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で使ってみる →
@@ -688,7 +686,7 @@ export default function BalanceWheel() {
                 セッションマネージャー
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                予約・スケジュール・記録などのセッション運営タスクを自動化。手動運用から解放され、本業の対話に集中できる。
+                <span className="font-semibold text-slate-700">予約管理・Zoom URL自動発行・カレンダー連携・セッション記録</span>までワンストップ。複数ツールを行き来する手作業から解放され、本業のコーチングに集中できる毎日へ。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で使ってみる →
@@ -706,7 +704,7 @@ export default function BalanceWheel() {
                 ウェルビーイング診断
               </div>
               <div className="text-xs text-slate-600 leading-relaxed">
-                早稲田大学・大月友教授（臨床心理士）監修。25因子50問・約5分で、個人/組織のウェルビーイングを可視化（永年無料）。
+                <span className="font-semibold text-slate-700">クライアントの「今の状態」と「セッション前後の変化」を5分で可視化</span>。早稲田大学・大月友教授（臨床心理士）監修の25因子診断で、コーチング効果を客観データとして示せる。
               </div>
               <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                 無料で診断する →
@@ -737,7 +735,7 @@ export default function BalanceWheel() {
                   WELLBEING MAGAZINE
                 </div>
                 <div className="text-xs text-slate-600 leading-relaxed">
-                  コーチング・ウェルビーイング・対人支援の実践知。論文まとめから現場の事例まで、対人支援者向けに編集された記事を週次で更新中。
+                  <span className="font-semibold text-slate-700">最新論文の解説、ICF/PCC試験対策、現場の実践事例</span>まで。対人支援者向けに編集された記事を週次で更新、コーチとしての引き出しを増やすコンテンツを届けます。
                 </div>
                 <div className="text-xs text-brand-coral font-semibold mt-3 group-hover:translate-x-1 transition">
                   記事を読む →
