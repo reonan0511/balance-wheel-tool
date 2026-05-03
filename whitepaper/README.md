@@ -2,88 +2,114 @@
 
 ## 構成ファイル
 
-| ファイル | 用途 |
+| ファイル | 役割 |
 |---|---|
-| `whitepaper-source.md` | ホワイトペーパー本文（Markdown 全文） |
-| `gpt-prompt.md` | ChatGPT-5.5 Pro に投げるプロンプト一式 |
-| `screenshots/` | ツール画面のスクリーンショット（後で .pptx に差し込む） |
-| `README.md` | このファイル |
+| **`whitepaper.html`** ⭐ | **本番ホワイトペーパー（HTML/CSS版・印刷でPDF化）** |
+| `whitepaper-source.md` | Markdown原稿（HTML制作の元ネタ・他用途のバックアップ）|
+| `whitepaper-source.docx` | Word版（Gamma等のAIツール経由用バックアップ）|
+| `gpt-prompt.md` | GPT/AI ツール用プロンプト（バックアップ手段）|
+| `screenshots/` | ツール画面・プレビュー画像 |
+| `capture-screenshots.mjs` | ツール画面スクショ撮影スクリプト |
+| `preview-render.mjs` | HTML プレビュー全体撮影 |
+| `preview-pages.mjs` | HTML 各ページ個別撮影 |
 
-## 制作ワークフロー
+## 推奨ワークフロー（HTML 経由）
 
-### Step 1: ChatGPT-5.5 Pro で .pptx 生成
+### Step 1: ブラウザで開く
+ファインダーで `whitepaper.html` をダブルクリック、または:
 
-1. `gpt-prompt.md` の冒頭の「プロンプト本体」をコピー
-2. ChatGPT-5.5 Pro を開いて新しい会話を開始
-3. プロンプトを貼り付け、続けて `whitepaper-source.md` の中身を全部貼る
-4. 送信 → GPT が .pptx ファイルを生成
-5. ダウンロードして PowerPoint / Keynote / Google Slides で開く
+```bash
+open /Users/reonakoizumi/Documents/MetaMentor/01_projects/balance-wheel-tool/whitepaper/whitepaper.html
+```
 
-### Step 2: スクリーンショットを差し込む
+### Step 2: PDF として保存
+1. ブラウザ画面で **Cmd + P** で印刷ダイアログ
+2. 左下の **「PDF」** ドロップダウン → **「PDFとして保存」**
+3. 推奨ブラウザ: **Safari または Chrome**（Firefox はフォント描画が若干荒い）
+4. 印刷オプション:
+   - 用紙サイズ: **A4**
+   - 余白: **デフォルト（または最小）**
+   - **背景イメージ・カラーを印刷する** にチェック ⚠️ 重要
 
-`whitepaper-source.md` 内に `[SCREENSHOT: ツールのメイン入力画面（PC表示）]` などのプレースホルダーがあります。`screenshots/` フォルダに保存された画像を、対応する位置に貼り替えます。
+### Step 3: ファイル保存
+- ファイル名: `balance-wheel-handbook-v1.pdf` 等
+- 保存先: 任意
 
-差し込む画像:
-- `screenshots/desktop-main.png` → 「ツールのメイン入力画面（PC表示）」
-- `screenshots/mobile-share-mode.png` → 「シェア表示モードの画面」
+### Step 4: WordPress eBook 登録
+- WP管理画面の eBook ダウンロードフォーム管理から新規登録
+- PDF アップロード
+- 配布用 URL を取得
+- マガジン記事内の CTA-D ショートコードの遷移先を更新
 
-### Step 3: GPT に追加リクエスト（必要に応じて）
+## デザイン仕様
 
-`gpt-prompt.md` の末尾に「想定される追加プロンプト」例があります:
-- 表紙のヒーロー画像を作り直したい
-- 全体的に文字を減らしたい
-- 配色をリファインしたい
-- 特定ページだけ作り直したい
+| 要素 | 値 |
+|---|---|
+| カラーパレット | ネイビー `#1F2D4F` / コーラル `#C9605A` / クリーム `#FAF7F0` / ゴールド `#B89556` / セージ `#8FA988` |
+| 表示フォント | Inter（英数字・見出し） |
+| 本文フォント | Source Serif 4 / Noto Serif JP |
+| 本文サンセリフ | Noto Sans JP |
+| 用紙サイズ | A4 ポートレート |
+| 余白 | 22mm × 20mm |
 
-### Step 4: 最終調整
+## コンテンツ修正方法
 
-- URL リンクがクリック可能か確認
-- 著者プロフィール・連絡先を最新化
-- 誤字脱字チェック
-- ページ番号・目次のページ整合性
-
-### Step 5: PDF エクスポート → WordPress eBook 登録
-
-1. PowerPoint で「ファイル → エクスポート → PDF として保存」
-2. ファイル名: `balance-wheel-handbook-v1.pdf`
-3. WordPress の eBook ダウンロードフォーム管理画面で新規登録
-4. 配布リンクを取得
-5. マガジン記事内の CTA バナー（CTA-D 系ショートコード）の遷移先を更新
-
-## 想定スケジュール
-
-| 工程 | 担当 | 想定時間 |
-|---|---|---|
-| Markdown 執筆 | Claude Code | ✅ 完了 |
-| スクショ撮影 | Claude Code | 30分 |
-| GPT-5.5 Pro で .pptx 生成 | 小泉さん | 30分〜1時間 |
-| スクショ差し込み | 小泉さん | 30分 |
-| デザイン微調整 | 小泉さん | 1〜2時間 |
-| PDF 化 + WordPress 登録 | 小泉さん | 30分 |
-| **合計** | | **半日** |
+`whitepaper.html` を直接編集:
+- 文字の修正: HTML 内の該当部分を書き換え
+- 色の変更: `<style>` 内の `:root` 変数を変更
+- セクション追加: 既存の `<section class="page">...</section>` ブロックをコピーして編集
+- 改ページ調整: `page-break-before: always` を含む CSS を追加
 
 ## トラブルシューティング
 
-### GPT が長すぎてタイムアウトする
-原稿を Part 1〜2 と Part 3〜4 で分割。前半で .pptx を出させて、後半をスライドとして追加させる。
+### フォントが英字フォントになって見える
+- インターネット接続を確認（Google Fonts を読み込むため）
+- ブラウザのキャッシュをクリアして再読み込み
 
-### .pptx の出力品質が低い
-追加プロンプトで「ページごとに作り直して」を試す。または Gamma.app に切り替え。
+### 印刷時に色が出ない
+- 印刷ダイアログで **「背景グラフィック」** にチェック
+- Safari の場合: 「カラーで印刷」を選択
 
-### 画像生成が失敗する
-プロンプトを英語に切り替えると成功率が上がる傾向。
-例: `[IMAGE: ...]` の中身を英訳して再投入。
+### ページが大きすぎる/小さすぎる
+- 印刷スケール 100% を確認
+- 用紙サイズ A4 を確認
 
-### フォントが崩れる
-PowerPoint で開いたとき、日本語フォントがインストールされてないと崩れる場合あり。
-`Yu Gothic UI` や `Hiragino Sans` を選び直す。
+### スクショ画像が表示されない
+- `screenshots/` フォルダがHTMLと同じ場所にあるか確認
+- 画像の相対パス `screenshots/xxx.png` が正しいか確認
 
-## 配布ツール側との整合性
+## 参考: ツール画面スクリーンショット（再撮影）
 
-ホワイトペーパー内で記載の URL は以下と一致:
-- 配布ツール: https://balance-wheel-tool.vercel.app/
-- MetaMentor: https://metamentor.tech/
-- ウェルビーイング診断: https://wellbeing.metamentor.tech/
-- マガジン: https://metamentor.tech/magazine/
+ツールに変更があったら以下で再撮影:
 
-ツールの URL 変更（独自ドメイン化等）があったら、`whitepaper-source.md` 内の URL を一括置換してから再生成。
+```bash
+cd /Users/reonakoizumi/Documents/MetaMentor/01_projects/balance-wheel-tool/whitepaper
+node capture-screenshots.mjs
+```
+
+## 参考: HTML プレビュー画像（再生成）
+
+HTML を編集後、各ページのプレビュー画像を見たい場合:
+
+```bash
+cd /Users/reonakoizumi/Documents/MetaMentor/01_projects/balance-wheel-tool/whitepaper
+node preview-pages.mjs
+```
+
+→ `screenshots/preview-page-XX.png` に各ページが保存されます。
+
+## 失敗した試行（参考メモ）
+
+- ❌ **GPT-5.5 Pro で .pptx 生成**: 出力品質が低く採用見送り
+- ❌ **Gamma.app**: テンプレートが企業ホワイトペーパー風にならず、見送り
+- ✅ **Claude Code が HTML/CSS 直接生成**: 完全制御 + 高品質、採用
+
+## 配布前チェックリスト
+
+- [ ] 全ページ順番が正しい
+- [ ] URL（balance-wheel-tool.vercel.app）が最新
+- [ ] 著者プロフィール・連絡先が最新
+- [ ] スクリーンショット画像が表示されている
+- [ ] 誤字脱字なし
+- [ ] PDF 化したファイルサイズが適切（5-10MB 程度想定）
+- [ ] PDF を異なるビューア（Preview / Adobe Reader）で開いて崩れがないか確認

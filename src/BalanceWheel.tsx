@@ -726,7 +726,7 @@ export default function BalanceWheel() {
             コーチの方へ
           </h3>
           <p className="text-sm text-slate-700 mb-1">
-            <span className="text-brand-navy font-bold">ICF PCC 認定コーチが現場で使うために設計</span>した、コーチ業務を楽にする
+            <span className="text-brand-navy font-bold">ICF認定PCCコーチが現場で使うために設計</span>した、コーチ業務を楽にする
             <span className="text-brand-coral font-bold text-base">無料</span>
             のツール群です。
           </p>

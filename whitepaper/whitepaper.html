@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>人生の輪、明日のセッションから使える。 | コーチ実践ハンドブック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   COLOR PALETTE & VARIABLES
+   ========================================================= */
+:root {
+  --bg-cream: #FAF7F0;
+  --bg-white: #FFFFFF;
+  --ink-navy: #1F2D4F;
+  --ink-charcoal: #2C2C2C;
+  --ink-soft: #4B4B4B;
+  --ink-muted: #7A7A7A;
+  --accent-coral: #C9605A;
+  --accent-coral-soft: #E8B5B0;
+  --accent-sage: #8FA988;
+  --accent-gold: #B89556;
+  --border-soft: #E8E2D5;
+  --divider: #D4CFC2;
+  --bg-callout: #F4EFE3;
+  --bg-quote: #FFFCF5;
+
+  --font-display: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
+  --font-serif: 'Source Serif 4', 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --font-body: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================================================
+   PRINT / PAGE SETUP (A4 LANDSCAPE)
+   ========================================================= */
+@page {
+  size: A4 landscape;
+  margin: 16mm 22mm;
+}
+
+@page :first {
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .no-print { display: none !important; }
+  .page-break { page-break-before: always; break-before: page; }
+  .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+  section { page-break-after: always; }
+  section:last-of-type { page-break-after: auto; }
+}
+
+@media screen {
+  body {
+    background: #555;
+    padding: 30px 0;
+  }
+  .page {
+    background: var(--bg-cream);
+    width: 297mm;
+    min-height: 210mm;
+    margin: 0 auto 30px auto;
+    padding: 16mm 22mm;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+  }
+  .page.cover {
+    padding: 0;
+  }
+  .screen-banner {
+    max-width: 297mm;
+    margin: 0 auto 20px auto;
+    background: #FFF8E1;
+    border: 1px solid #E0C97F;
+    color: #5A4500;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--ink-charcoal);
+  font-size: 10.5pt;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p { margin: 0 0 0.9em 0; }
+ul, ol { margin: 0 0 1em 1.4em; padding: 0; }
+li { margin-bottom: 0.4em; }
+strong { color: var(--ink-navy); font-weight: 700; }
+em { font-style: italic; color: var(--accent-coral); font-weight: 500; }
+a { color: var(--accent-coral); text-decoration: none; border-bottom: 1px solid var(--accent-coral-soft); }
+
+/* =========================================================
+   COVER PAGE (LANDSCAPE 297mm × 210mm, 2-column)
+   ========================================================= */
+.cover {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(31,45,79,0.97) 0%, rgba(31,45,79,0.85) 60%, rgba(201,96,90,0.75) 100%),
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  color: white;
+  height: 210mm;
+  width: 297mm;
+  margin: 0 auto 30px auto;
+  padding: 22mm 22mm;
+  box-sizing: border-box;
+  page-break-after: always;
+  gap: 14mm;
+}
+
+.cover__main {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover__eyebrow {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent-coral-soft);
+  margin-bottom: 8mm;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cover__eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  display: block;
+}
+
+.cover__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 36pt;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 6mm 0;
+  color: white;
+}
+
+.cover__subtitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 12pt;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+
+.cover__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-display);
+  font-size: 9pt;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.05em;
+  padding-top: 6mm;
+}
+.cover__footer-block { line-height: 1.6; }
+.cover__footer-block strong { color: white; font-weight: 600; }
+
+.cover__badges {
+  display: flex;
+  gap: 6mm;
+  margin: 6mm 0 6mm 0;
+  flex-wrap: wrap;
+}
+.cover__badge {
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 5px 12px;
+  font-family: var(--font-display);
+  font-size: 8pt;
+  letter-spacing: 0.08em;
+  border-radius: 100px;
+  color: rgba(255,255,255,0.95);
+}
+
+/* Tool emphasis card on cover (right column) */
+.cover__tool {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 10mm 8mm;
+  margin: 0;
+}
+.cover__tool-eyebrow {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-coral-soft);
+  margin-bottom: 4mm;
+}
+.cover__tool-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18pt;
+  line-height: 1.3;
+  color: white;
+  margin: 0 0 4mm 0;
+}
+.cover__tool-desc {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.88);
+  margin: 0 0 6mm 0;
+}
+.cover__tool-features {
+  display: grid;
+  gap: 2mm;
+  margin: 0 0 6mm 0;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  color: white;
+}
+.cover__tool-features li {
+  list-style: none;
+  padding-left: 18px;
+  position: relative;
+}
+.cover__tool-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-coral-soft);
+  font-weight: 700;
+}
+.cover__tool-url {
+  background: white;
+  color: var(--ink-navy);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11pt;
+  padding: 4mm 5mm;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto;
+  display: block;
+  border: none !important;
+  letter-spacing: 0;
+  word-break: break-all;
+}
+.cover__tool-url-label {
+  display: block;
+  font-size: 7.5pt;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 2mm;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PAGE LAYOUT
+   ========================================================= */
+.section-eyebrow {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-coral);
+  margin: 0 0 6mm 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent-coral);
+  display: inline-block;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 26pt;
+  line-height: 1.2;
+  color: var(--ink-navy);
+  margin: 0 0 8mm 0;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18pt;
+  line-height: 1.3;
+  color: var(--ink-navy);
+  margin: 14mm 0 5mm 0;
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12pt;
+  line-height: 1.4;
+  color: var(--ink-navy);
+  margin: 8mm 0 3mm 0;
+  letter-spacing: 0.01em;
+}
+
+.lede {
+  font-family: var(--font-serif);
+  font-size: 13pt;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 10mm 0;
+  font-weight: 400;
+}
+
+/* =========================================================
+   PART DIVIDER PAGE (LANDSCAPE: 2-column layout)
+   ========================================================= */
+.part-divider {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16mm;
+  align-items: center;
+  height: calc(210mm - 32mm);
+  text-align: left;
+}
+.part-divider__left {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.part-divider__number {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 120pt;
+  line-height: 1;
+  color: var(--accent-coral);
+  margin: 0 0 6mm 0;
+  letter-spacing: -0.03em;
+}
+.part-divider__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 4mm 0;
+}
+.part-divider__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 36pt;
+  line-height: 1.2;
+  color: var(--ink-navy);
+  margin: 0 0 8mm 0;
+}
+.part-divider__lede {
+  font-family: var(--font-serif);
+  font-size: 13pt;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--accent-coral);
+  padding-left: 6mm;
+}
+
+/* =========================================================
+   COMPONENTS
+   ========================================================= */
+
+/* Pull quote (like Harper's Bazaar feature) */
+.pullquote {
+  font-family: var(--font-serif);
+  font-size: 16pt;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--ink-navy);
+  border-top: 2px solid var(--accent-coral);
+  border-bottom: 2px solid var(--accent-coral);
+  padding: 8mm 5mm;
+  margin: 8mm 0;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Side callout */
+.callout {
+  background: var(--bg-callout);
+  border-left: 4px solid var(--accent-gold);
+  padding: 6mm 7mm;
+  margin: 6mm 0;
+  page-break-inside: avoid;
+  border-radius: 0 4px 4px 0;
+}
+.callout__label {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 3mm;
+  display: block;
+}
+.callout__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 12pt;
+  color: var(--ink-navy);
+  margin: 0 0 2mm 0;
+}
+.callout p { margin-bottom: 0; font-size: 10pt; }
+
+/* Note (subtle) */
+.note {
+  font-size: 9pt;
+  color: var(--ink-muted);
+  font-style: italic;
+  border-left: 2px solid var(--divider);
+  padding-left: 4mm;
+  margin: 4mm 0;
+}
+
+/* Stat block */
+.stat-row {
+  display: flex;
+  gap: 6mm;
+  margin: 6mm 0;
+  page-break-inside: avoid;
+}
+.stat {
+  flex: 1;
+  background: var(--bg-white);
+  border: 1px solid var(--border-soft);
+  padding: 5mm;
+  border-radius: 6px;
+}
+.stat__number {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 28pt;
+  line-height: 1;
+  color: var(--accent-coral);
+  margin-bottom: 2mm;
+}
+.stat__label {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5mm 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+th {
+  background: var(--ink-navy);
+  color: white;
+  text-align: left;
+  padding: 3mm 4mm;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 9pt;
+  letter-spacing: 0.05em;
+}
+td {
+  padding: 3mm 4mm;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+  line-height: 1.5;
+}
+tr:nth-child(even) td {
+  background: rgba(232, 226, 213, 0.25);
+}
+
+/* Image + caption */
+figure {
+  margin: 6mm 0;
+  page-break-inside: avoid;
+}
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft);
+}
+figcaption {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  color: var(--ink-muted);
+  margin-top: 2mm;
+  font-style: italic;
+  text-align: center;
+}
+
+.figure-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+  margin: 6mm 0;
+}
+.figure-pair img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft);
+}
+
+/* Mobile screenshot framing */
+.phone-mockup {
+  max-width: 75mm;
+  margin: 0 auto;
+}
+.phone-mockup img {
+  border: 6px solid var(--ink-navy);
+  border-radius: 14px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Script box (for templates) */
+.script {
+  background: var(--bg-quote);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  font-family: var(--font-body);
+  font-size: 10pt;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  page-break-inside: avoid;
+  position: relative;
+}
+.script::before {
+  content: 'TEMPLATE';
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  background: var(--accent-coral);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.script-label {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--ink-navy);
+  margin: 4mm 0 1mm 0;
+  letter-spacing: 0.02em;
+}
+.script a {
+  color: var(--accent-coral);
+  border-bottom: 1px dotted var(--accent-coral-soft);
+  text-decoration: none;
+}
+
+/* TOC */
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc-list > li {
+  margin: 0 0 6mm 0;
+}
+.toc-part {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-coral);
+  margin: 0 0 2mm 0;
+  display: block;
+}
+.toc-title {
+  font-family: var(--font-serif);
+  font-size: 14pt;
+  font-weight: 600;
+  color: var(--ink-navy);
+  margin: 0 0 3mm 0;
+}
+.toc-children {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 5mm;
+  border-left: 1px solid var(--divider);
+}
+.toc-children li {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  color: var(--ink-soft);
+  padding: 1mm 0 1mm 4mm;
+}
+
+/* Question list */
+.questions {
+  counter-reset: q;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.questions li {
+  counter-increment: q;
+  position: relative;
+  padding: 0 0 0 18mm;
+  margin: 0 0 8mm 0;
+  page-break-inside: avoid;
+}
+.questions li::before {
+  content: 'Q' counter(q);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16pt;
+  color: var(--accent-coral);
+  line-height: 1;
+}
+.questions li .q-context {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 2mm;
+  display: block;
+}
+.questions li .q-text {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  font-weight: 500;
+  color: var(--ink-navy);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Case study */
+.case {
+  background: var(--bg-white);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 7mm;
+  margin: 6mm 0;
+  page-break-inside: avoid;
+}
+.case__header {
+  display: flex;
+  align-items: baseline;
+  gap: 4mm;
+  margin-bottom: 4mm;
+  padding-bottom: 3mm;
+  border-bottom: 1px solid var(--divider);
+}
+.case__id {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22pt;
+  color: var(--accent-coral);
+  line-height: 1;
+}
+.case__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 14pt;
+  color: var(--ink-navy);
+}
+.case__attr {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  color: var(--ink-muted);
+}
+.case__block {
+  margin: 3mm 0;
+}
+.case__block-label {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 1mm;
+  display: block;
+}
+.case__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--accent-coral-soft);
+  padding-left: 4mm;
+  margin: 2mm 0;
+}
+
+/* Service cards (appendix F) */
+.service {
+  display: flex;
+  gap: 5mm;
+  padding: 5mm;
+  margin: 4mm 0;
+  background: var(--bg-white);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  page-break-inside: avoid;
+}
+.service__icon {
+  font-size: 24pt;
+  flex-shrink: 0;
+  width: 16mm;
+  text-align: center;
+}
+.service__body {
+  flex: 1;
+}
+.service__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 13pt;
+  color: var(--ink-navy);
+  margin: 0 0 1mm 0;
+}
+.service__desc {
+  font-size: 10pt;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 2mm 0;
+}
+.service__url {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  color: var(--accent-coral);
+}
+
+/* Wheel (printable blank wheel) */
+.wheel-print {
+  max-width: 130mm;
+  margin: 8mm auto;
+  display: block;
+}
+
+/* Author / colophon */
+.author-card {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-white);
+  border-radius: 6px;
+  padding: 7mm;
+  margin: 5mm 0;
+}
+.author-card__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16pt;
+  color: var(--ink-navy);
+  margin: 0 0 2mm 0;
+}
+.author-card__title {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  color: var(--ink-muted);
+  margin: 0 0 4mm 0;
+  letter-spacing: 0.05em;
+}
+
+/* Closing page */
+.closing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: calc(210mm - 32mm);
+}
+.closing__message {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18pt;
+  line-height: 1.5;
+  color: var(--ink-navy);
+  max-width: 130mm;
+  margin: 0 0 10mm 0;
+}
+.closing__signature {
+  font-family: var(--font-display);
+  font-size: 10pt;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+}
+.closing__line {
+  width: 30mm;
+  height: 1px;
+  background: var(--accent-coral);
+  margin: 8mm 0;
+}
+
+/* Utility */
+.spacer-sm { height: 4mm; }
+.spacer-md { height: 8mm; }
+.spacer-lg { height: 16mm; }
+.text-muted { color: var(--ink-muted); }
+.text-center { text-align: center; }
+
+/* Print-only page numbers (footer) */
+@media print {
+  @page {
+    @bottom-right {
+      content: counter(page);
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      color: #999;
+    }
+    @bottom-left {
+      content: '人生の輪 ─ コーチ実践ハンドブック';
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+  @page :first {
+    @bottom-right { content: ''; }
+    @bottom-left { content: ''; }
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="screen-banner no-print">
+  💡 ブラウザで開いている場合: <strong>Cmd + P</strong> で印刷ダイアログ → 「PDF として保存」で完成
+</div>
+
+<!-- =========================================================
+     COVER PAGE
+     ========================================================= -->
+<section class="cover">
+  <!-- LEFT: Brand & Title -->
+  <div class="cover__main">
+    <div class="cover__eyebrow">Coach Practice Handbook · Vol. 1</div>
+
+    <h1 class="cover__title">人生の輪、<br>明日のセッションから使える。</h1>
+    <p class="cover__subtitle">
+      コーチがクライアントに渡せる<strong style="color:white;">無料の Web ツール</strong>と、<br>
+      セッション現場で活かす実践ノウハウを1冊に。
+    </p>
+
+    <div class="cover__badges">
+      <span class="cover__badge">ICF認定PCC 設計</span>
+      <span class="cover__badge">無料配布ツール付</span>
+      <span class="cover__badge">アカウント登録不要</span>
+    </div>
+
+    <div class="cover__footer">
+      <div class="cover__footer-block">
+        <strong>MetaMentor, Inc.</strong><br>
+        Wellbeing × Coaching DX
+      </div>
+      <div class="cover__footer-block" style="text-align: right;">
+        <strong>Edition 1.0</strong><br>
+        2026
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Tool Card -->
+  <div class="cover__tool">
+    <div class="cover__tool-eyebrow">▸ 本書の中核</div>
+    <h2 class="cover__tool-title">
+      クライアントに<br>URL を送るだけ。
+    </h2>
+    <p class="cover__tool-desc">
+      アカウント登録不要・3分で完了。<br>
+      クライアントが自宅で「人生の輪」を埋め、<br>
+      コーチに送る ─ そのまま使える Web ツール。
+    </p>
+    <ul class="cover__tool-features">
+      <li>スマホ/PC両対応・ログイン不要</li>
+      <li>結果をスクショ/PDF でコーチに共有</li>
+      <li>3ヶ月後の再記入で変化を可視化</li>
+    </ul>
+    <div>
+      <span class="cover__tool-url-label">▸ いますぐ試す / 配布する</span>
+      <a class="cover__tool-url" href="https://balance-wheel-tool.vercel.app/" target="_blank">balance-wheel-tool.vercel.app</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ABOUT THIS HANDBOOK
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">About this handbook</div>
+  <h1>このハンドブックについて</h1>
+
+  <p class="lede">
+    本書の中核は、<strong>クライアントに URL を送るだけで使える無料の「人生の輪」ツール</strong>です。それを最大限に活かすための理論と実践ノウハウを、ICF認定PCCコーチの視点でまとめました。
+  </p>
+
+  <h2>想定読者</h2>
+  <ul>
+    <li>プロフェッショナルとして活動するコーチ</li>
+    <li>カウンセラー・キャリアコンサルタント・産業カウンセラー</li>
+    <li>副業として対人支援を始めたばかりの方</li>
+  </ul>
+
+  <h2>このハンドブックで得られる3つのもの</h2>
+
+  <div class="stat-row">
+    <div class="stat" style="border: 2px solid var(--accent-coral); background: linear-gradient(135deg, #FFF8F4 0%, #FFEDE5 100%);">
+      <div class="stat__number">01</div>
+      <div class="stat__label"><strong style="color: var(--accent-coral); display:block; margin-bottom: 2mm;">配布ツール（中核）</strong>クライアントに URL ひとつで渡せる<br>無料 Web ツール（アカウント不要）</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">02</div>
+      <div class="stat__label"><strong style="color: var(--ink-navy); display:block; margin-bottom: 2mm;">問いかけ集</strong>明日のセッションから使える<br>15個・場面別</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">03</div>
+      <div class="stat__label"><strong style="color: var(--ink-navy); display:block; margin-bottom: 2mm;">理論武装</strong>起源・学術根拠・<br>なぜ60年使われ続けるか</div>
+    </div>
+  </div>
+
+  <div class="callout" style="border-left-color: var(--accent-coral); background: linear-gradient(135deg, #FFF8F4 0%, #FAF7F0 100%);">
+    <span class="callout__label" style="color: var(--accent-coral);">▸ まずはここから</span>
+    <h3 class="callout__title">配布ツールを開いて、ご自身で3分試してみる</h3>
+    <p>すべての章はこのツールを前提に書かれています。下記URLを開き、まずコーチ自身が一度埋めてみてください。クライアント体験を理解した上で本書を読み進めると、各章の意図が立体的に伝わります。</p>
+    <p style="margin-top: 4mm;"><a href="https://balance-wheel-tool.vercel.app/" target="_blank" style="font-family: var(--font-display); font-weight: 600; font-size: 13pt; background: var(--ink-navy); color: white; padding: 3mm 6mm; border-radius: 6px; border: none; display: inline-block;">▸ balance-wheel-tool.vercel.app</a></p>
+  </div>
+</section>
+
+<!-- =========================================================
+     CORE TOOL INTRO (NEW DEDICATED PAGE)
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow" style="color: var(--accent-coral);">▸ The Core Tool</div>
+  <h1>本書の中核 ─ 配布ツール</h1>
+
+  <p class="lede">
+    クライアントに <a href="https://balance-wheel-tool.vercel.app/" target="_blank">balance-wheel-tool.vercel.app</a> を送るだけ。<br>
+    アカウント登録不要、3分で完了、結果をスクショ/PDFでコーチに共有できる ─ それが本書の中核です。
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin: 6mm 0;">
+    <div>
+      <h3 style="margin-top: 0;">クライアント体験</h3>
+      <ul>
+        <li>URL を開く（ログイン・登録なし）</li>
+        <li>名前と日付を入力</li>
+        <li>8項目のスライダーを動かす</li>
+        <li>気づきメモを書く</li>
+        <li>「シェア表示モード」でスクショ → コーチに送信</li>
+      </ul>
+
+      <h3>コーチが得るもの</h3>
+      <ul>
+        <li>事前に「現在地」が見えた状態でセッション開始</li>
+        <li>当日の対話時間を「気づきの深掘り」に集中</li>
+        <li>3ヶ月後の再記入で変化を客観的に共有</li>
+      </ul>
+    </div>
+
+    <div>
+      <figure style="margin: 0;">
+        <img src="screenshots/desktop-main-firstview.png" alt="ツールのメイン入力画面" style="border: 1px solid var(--border-soft); border-radius: 6px;">
+        <figcaption>PC で開いた入力画面</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="callout" style="border-left-color: var(--accent-coral); background: linear-gradient(135deg, #FFF8F4 0%, #FAF7F0 100%); margin-top: 4mm;">
+    <span class="callout__label" style="color: var(--accent-coral);">▸ Action</span>
+    <h3 class="callout__title">本書を読み進める前に、まず一度試す</h3>
+    <p>このページを開きながら、<a href="https://balance-wheel-tool.vercel.app/" target="_blank"><strong>balance-wheel-tool.vercel.app</strong></a> を別タブで開いて、ご自身のスコアを入れてみてください。3分で完了し、その体験が以降の章を読む解像度を大きく上げます。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     TABLE OF CONTENTS
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Contents</div>
+  <h1>目次</h1>
+
+  <ul class="toc-list">
+    <li>
+      <span class="toc-part">Part 1</span>
+      <div class="toc-title">知識編 ─ なぜこのワークが効くのか</div>
+      <ul class="toc-children">
+        <li>1章 ─ バランスホイールとは</li>
+        <li>2章 ─ なぜこの8項目なのか</li>
+        <li>3章 ─ 項目をカスタマイズする指針</li>
+      </ul>
+    </li>
+    <li>
+      <span class="toc-part">Part 2</span>
+      <div class="toc-title">実践編 ─ 明日のセッションで使える運用ガイド</div>
+      <ul class="toc-children">
+        <li>4章 ─ 配布フロー全体図</li>
+        <li>5章 ─ クライアントへの渡し方スクリプト</li>
+        <li>6章 ─ セッション中の問いかけ集 15個</li>
+        <li>7章 ─ 継続記入で変化を追う</li>
+      </ul>
+    </li>
+    <li>
+      <span class="toc-part">Part 3</span>
+      <div class="toc-title">配布ツール完全ガイド</div>
+      <ul class="toc-children">
+        <li>8章 ─ クライアントの入力体験</li>
+        <li>9章 ─ シェア表示モードの使い方</li>
+        <li>10章 ─ コーチがスコアを読む3つの視点</li>
+      </ul>
+    </li>
+    <li>
+      <span class="toc-part">Part 4</span>
+      <div class="toc-title">付録 ─ 実務で使える補助資料</div>
+      <ul class="toc-children">
+        <li>A. クライアント送付メッセージ・テンプレ集</li>
+        <li>B. ケーススタディ 3パターン</li>
+        <li>C. 使ってはいけない場面・注意点</li>
+        <li>D. ICF コア・コンピテンシー対応表</li>
+        <li>E. 紙の印刷用ホイール</li>
+        <li>F. MetaMentor サービス紹介</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<!-- =========================================================
+     PART 1 DIVIDER
+     ========================================================= -->
+<section class="page">
+  <div class="part-divider">
+    <div class="part-divider__left">
+      <div class="part-divider__number">01</div>
+      <div class="part-divider__label">Part One</div>
+      <h1 class="part-divider__title">知識編</h1>
+    </div>
+    <p class="part-divider__lede">
+      なぜこのワークが60年使われ続けてきたのか。<br>クライアントを前に立つときの「自信」は、ツールの背後にある理論を理解しているかどうかで決まります。
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 1
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 1</div>
+  <h1>バランスホイールとは</h1>
+
+  <p class="lede">
+    人生を構成する複数の領域を円グラフで可視化し、それぞれの満足度を 0〜10 で点数化するツール。「人生の輪」「Wheel of Life」とも呼ばれます。
+  </p>
+
+  <h2>3つの本質的な機能</h2>
+  <ol>
+    <li><strong>言語化されていない違和感を1枚の図に変換する</strong></li>
+    <li><strong>「自分の現在地」が初めて言語化される体験を生む</strong></li>
+    <li><strong>クライアントの自己決定（何から手をつけるか）を引き出す</strong></li>
+  </ol>
+
+  <h2>コーチングにおける位置づけ</h2>
+  <p>
+    ICF認定スクールの多くで「初回セッション・標準ワーク」に組み込まれています。日本では2000年代以降、コーチング研修の入門ワークとして広く普及しました。
+  </p>
+
+  <div class="callout">
+    <span class="callout__label">Key Insight</span>
+    <h3 class="callout__title">なぜ「定番」が「定番」であり続けるか</h3>
+    <p>定番ワークは、しばしば「ありきたり」と軽視されがちです。しかしバランスホイールが60年以上使われ続けてきた事実は、<strong>このワークが満たす本質的な機能が他に代替されていない</strong>ことを意味します。本書では、その「なぜ」を構造的に解き明かします。</p>
+  </div>
+
+  <h2>60年使われ続ける3つの理由</h2>
+
+  <h3>① 普遍性</h3>
+  <p>人生の主要領域は、文化・年代・職業を超えてある程度共通している。そのため初回クライアントとの<strong>共通言語</strong>として機能します。</p>
+
+  <h3>② シンプルさ</h3>
+  <p>ルールは「8項目に 0〜10 を付ける」だけ。<strong>3分で完了</strong>するため、心理的ハードルが極めて低い。</p>
+
+  <h3>③ 対話の起点として優秀</h3>
+  <p>スコアそのものより「なぜその数字を付けたか」「理想とのギャップ」を語ることで、<strong>深い対話の入り口</strong>になります。</p>
+</section>
+
+<!-- =========================================================
+     CHAPTER 1 part 2: 起源と学術根拠
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 1 · Origin & Evidence</div>
+  <h1>起源と学術的根拠</h1>
+
+  <h2>Paul J. Meyer と Success Motivation Institute</h2>
+  <p>
+    1960年、米国テキサス州。モチベーション研究の第一人者 <strong>Paul J. Meyer</strong>（ポール・J・マイヤー）が Success Motivation Institute（SMI）を設立しました。
+  </p>
+
+  <div class="pullquote">
+    成功は7つの領域で<br>同時に追求すべきである。
+  </div>
+
+  <p>
+    Meyer の思想は、ファイナンス・キャリア・身体・家族・精神性・教育・倫理という7領域を同時に診断するワークとして体系化されました。その<strong>視覚化ツール</strong>として円形のホイール図が採用され、現代のバランスホイールの原型が完成します。
+  </p>
+
+  <h2>学術的根拠</h2>
+
+  <h3>Whole Life Coaching の研究文脈</h3>
+  <p>バランスホイールは、生活全領域を統合的に扱う Whole Life Coaching の中核ツールとして発展してきました。</p>
+
+  <h3>Eakman ら（2014・コロラド州立大学）</h3>
+  <p>作業療法・職業健康学の文脈で「<strong>生活領域のバランス度合いと主観的幸福感に正の相関</strong>」を実証しています。</p>
+
+  <h3>Subjective Well-Being（主観的幸福感）理論との接続</h3>
+  <p>Diener らの SWB 研究では「<strong>人生の各領域の満足度の総和</strong>」がウェルビーイングの指標とされています。バランスホイールはこのフレームを<em>ビジュアル化したもの</em>と捉えられます。</p>
+
+  <h3>Self-Determination Theory（自己決定理論）との接続</h3>
+  <p>Deci & Ryan の SDT では「自律性 (Autonomy)」「有能感 (Competence)」「関係性 (Relatedness)」がウェルビーイングの基礎とされます。バランスホイールの<strong>「自分でスコアを付ける」プロセス</strong>は、自律性を直接強化する設計と言えます。</p>
+</section>
+
+<!-- =========================================================
+     CHAPTER 2
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 2</div>
+  <h1>なぜこの8項目なのか</h1>
+
+  <p class="lede">
+    本ツールが採用する標準8項目には、長年のコーチング実践と生活満足度研究の蓄積が反映されています。
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 8%;">#</th>
+        <th style="width: 27%;">項目</th>
+        <th>主にカバーする領域</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><strong>健康</strong></td><td>身体・体力・睡眠</td></tr>
+      <tr><td>2</td><td><strong>仕事・キャリア</strong></td><td>職業・職場・キャリア進展</td></tr>
+      <tr><td>3</td><td><strong>家族</strong></td><td>家族関係・パートナーシップ</td></tr>
+      <tr><td>4</td><td><strong>人間関係</strong></td><td>友人・同僚・コミュニティ</td></tr>
+      <tr><td>5</td><td><strong>趣味・余暇</strong></td><td>リクリエーション・自己表現</td></tr>
+      <tr><td>6</td><td><strong>自己成長</strong></td><td>学び・スキル開発・知的好奇心</td></tr>
+      <tr><td>7</td><td><strong>お金</strong></td><td>経済的安定・資産・収入</td></tr>
+      <tr><td>8</td><td><strong>心の充実</strong></td><td>スピリチュアリティ・意味・幸福感</td></tr>
+    </tbody>
+  </table>
+
+  <h2>選定の根拠</h2>
+  <ul>
+    <li>生活満足度研究（Diener, Cummins, OECD Better Life Index 等）で<strong>繰り返し抽出される主要次元</strong>を網羅</li>
+    <li>各項目が<strong>ほぼ独立</strong>しており、被りが少ない</li>
+    <li>どの年齢・職業のクライアントにも<strong>8項目とも実感を持って答えられる</strong>設計</li>
+  </ul>
+
+  <h2>各項目の対話的意味</h2>
+  <p style="line-height: 2.0;">
+    <strong>健康</strong>: 身体の声を聴いているか<br>
+    <strong>仕事・キャリア</strong>: 自分のエネルギーを注ぐ場所として納得しているか<br>
+    <strong>家族</strong>: 最も近い人々との関係に時間とエネルギーを割いているか<br>
+    <strong>人間関係</strong>: 家族以外の社会的つながりを育てているか<br>
+    <strong>趣味・余暇</strong>: 「やらねば」ではない「やりたい」時間を持てているか<br>
+    <strong>自己成長</strong>: 1年前の自分から進化している実感があるか<br>
+    <strong>お金</strong>: 安心と選択肢を生む経済基盤があるか<br>
+    <strong>心の充実</strong>: 日常の中で「生きていてよかった」と感じる瞬間があるか
+  </p>
+</section>
+
+<!-- =========================================================
+     CHAPTER 3
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 3</div>
+  <h1>項目をカスタマイズする指針</h1>
+
+  <p class="lede">
+    標準8項目は出発点に過ぎません。クライアントのフェーズや業界に応じて、項目の追加・置き換えを行うことで、ワークは何倍も深くなります。
+  </p>
+
+  <h2>標準8項目で進めて良い場合</h2>
+  <ul>
+    <li>初回セッションで「まず大枠を見る」目的</li>
+    <li>クライアントが特に違和感を示さない</li>
+    <li>短時間（10分以内）で全体像を掴みたい</li>
+  </ul>
+
+  <h2>カスタマイズすべき場合</h2>
+  <ul>
+    <li>クライアントの<strong>現在のフェーズ</strong>で重要な領域が標準8項目に入っていない</li>
+    <li>標準項目の中に<strong>意味を持たない項目</strong>がある（例: 独身に「家族」、定年後に「キャリア」）</li>
+    <li>業界・職種固有の重要次元がある（例: アーティストに「創作活動」、教育者に「教育的成果」）</li>
+  </ul>
+
+  <div class="callout">
+    <span class="callout__label">Practitioner's Rule</span>
+    <h3 class="callout__title">カスタマイズの3原則</h3>
+    <p><strong>① 加える項目は3つまで</strong> ─ 多すぎると焦点がぼやける<br>
+    <strong>② クライアントが20秒以内で意味を理解できる</strong>項目名にする<br>
+    <strong>③ 同じカテゴリの項目を2つ以上入れない</strong>（例: 「健康」と「フィットネス」を同時に置かない）</p>
+  </div>
+
+  <h2>よくあるカスタマイズ・パターン3つ</h2>
+
+  <h3>パターンA: 経営者・起業家向け</h3>
+  <p>標準8項目に加えて:</p>
+  <ul>
+    <li><strong>事業の成長</strong>（売上・組織・ビジョンの進捗）</li>
+    <li><strong>リーダーシップ</strong>（自分自身のリーダーとしての成長）</li>
+  </ul>
+
+  <h3>パターンB: 子育て中・育休中の方向け</h3>
+  <ul>
+    <li><strong>家族</strong>を「<strong>パートナーシップ</strong>」と「<strong>子育て</strong>」に分割</li>
+    <li><strong>キャリア</strong>を「<strong>仕事復帰準備</strong>」と読み替え</li>
+  </ul>
+
+  <h3>パターンC: 退職前後・セカンドキャリア期の方向け</h3>
+  <ul>
+    <li>「<strong>仕事・キャリア</strong>」を「<strong>社会との接点</strong>」に置き換え</li>
+    <li>「<strong>自己成長</strong>」を「<strong>学び直し</strong>」に強調</li>
+    <li>「<strong>心の充実</strong>」を「<strong>人生の意味・遺産</strong>」に重み付け</li>
+  </ul>
+
+  <p class="note">
+    重要: カスタマイズはクライアントと対話しながら一緒に決めるプロセス自体が、コーチングセッションの素材になります。
+  </p>
+</section>
+
+<!-- =========================================================
+     PART 2 DIVIDER
+     ========================================================= -->
+<section class="page">
+  <div class="part-divider">
+    <div class="part-divider__left">
+      <div class="part-divider__number">02</div>
+      <div class="part-divider__label">Part Two</div>
+      <h1 class="part-divider__title">実践編</h1>
+    </div>
+    <p class="part-divider__lede">
+      理論を腹落ちさせたら、次は手を動かす番です。<br>明日のセッションでそのまま使えるスクリプト・問いかけ・運用フローをまとめました。
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 4
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 4</div>
+  <h1>配布フロー全体図</h1>
+
+  <p class="lede">
+    ホワイトペーパーをダウンロードしてから、クライアントとの対話で活用するまでの流れを6ステップで整理します。
+  </p>
+
+  <ol style="line-height: 2.0;">
+    <li>コーチが本書（ホワイトペーパー）をダウンロード</li>
+    <li>本文に記載されたツールURLをコピー</li>
+    <li>クライアントへURLをLINE/メール送信（次回セッション前まで）</li>
+    <li>クライアントが入力 → スクショまたはPDFで送信</li>
+    <li>次回セッションで一緒に画面を見ながら対話</li>
+    <li>必要に応じて3ヶ月後に再記入を依頼</li>
+  </ol>
+
+  <h2>なぜデジタル配布なのか ─ 3つの実利</h2>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat__number">①</div>
+      <div class="stat__label"><strong style="color: var(--ink-navy);">心理的ハードルが下がる</strong><br>PDFを印刷して書き込むより、URLを開くほうが圧倒的に軽い</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">②</div>
+      <div class="stat__label"><strong style="color: var(--ink-navy);">「忘れる・失くす」が起きない</strong><br>ブラウザ内に自動保存、続きから記入可能</div>
+    </div>
+    <div class="stat">
+      <div class="stat__number">③</div>
+      <div class="stat__label"><strong style="color: var(--ink-navy);">変化の比較が容易</strong><br>3ヶ月後に同じURLで前回スコアと比較できる</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">Caution</span>
+    <h3 class="callout__title">注意点</h3>
+    <p>ブラウザのキャッシュ削除・シークレットモード・別端末では入力が引き継がれません。重要な記入は印刷/PDF保存を推奨します（ツール側に印刷ボタンを実装済）。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 5
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 5 · Templates</div>
+  <h1>クライアントへの渡し方スクリプト集</h1>
+
+  <p class="lede">
+    そのままコピペして使えるメッセージ・テンプレートを3シーン分用意しました。クライアントの関係性・場面に応じて選んでください。
+  </p>
+
+  <div class="script-label">SCENE 1 ─ 初回セッション前（LINE/カジュアル）</div>
+  <div class="script">○○さん、来週のセッションよろしくお願いします。
+事前に「人生の輪」というワークを試してみてもらえますか？
+3分で終わります。スマホでもPCでも開けます。
+
+▼こちらから
+<a href="https://balance-wheel-tool.vercel.app/" target="_blank">https://balance-wheel-tool.vercel.app/</a>
+
+入力後、画面の「シェア表示にする」を押して
+スクショを送ってもらえると、当日深く話せます。
+（送れない場合は当日一緒に画面見せてくださってもOK）</div>
+
+  <div class="script-label">SCENE 2 ─ 継続セッション中（メール/フォーマル）</div>
+  <div class="script">件名: 次回セッション前のご準備（任意）
+
+○○さん
+
+いつもお世話になっております。
+次回のセッションで、最近のご自身の状態を改めて
+俯瞰してみたく思っております。
+
+もしお時間あれば、こちらの「人生の輪」を
+記入してきていただけますと、より深く対話できます。
+
+URL: <a href="https://balance-wheel-tool.vercel.app/" target="_blank">https://balance-wheel-tool.vercel.app/</a>
+
+3分ほどで終わります。前回（○月）と比べて
+変化があれば、それも含めて当日伺わせてください。</div>
+
+  <div class="script-label">SCENE 3 ─ 対面・Zoomでその場で導入</div>
+  <div class="script">「では、今日の最初に少し全体像を見てみましょう。
+こちらのURLを今お送りしますので、開いてみてください。
+（URLを送る）
+
+3分ほどで8つの項目に点数を付けてもらうワークです。
+正解はありません。今この瞬間の感覚で OK です。
+
+私もモニターを共有しますので、
+入力しながら気になることがあれば声に出してください」</div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 6 - questions Part 1 (initial)
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 6 · Coaching Questions</div>
+  <h1>セッション中の問いかけ集 15個</h1>
+
+  <p class="lede">
+    場面別に、すぐ使える問いを15個まとめました。クライアントが入力した直後の対話で、これらの問いを<strong>1〜2個選んで投げる</strong>のが基本形です。
+  </p>
+
+  <h2>初回セッションで使う5つ</h2>
+
+  <ol class="questions">
+    <li>
+      <span class="q-context">全体把握</span>
+      <p class="q-text">このホイール、全体の形を眺めてみてください。最初に何を感じましたか？</p>
+    </li>
+    <li>
+      <span class="q-context">自己認識</span>
+      <p class="q-text">この点数の付け方、自分にとってどう感じましたか？ 思っていたより低い項目、高い項目はありましたか？</p>
+    </li>
+    <li>
+      <span class="q-context">注目領域</span>
+      <p class="q-text">現在と理想の差が一番大きい項目はどれですか？ なぜその差があると感じますか？</p>
+    </li>
+    <li>
+      <span class="q-context">資源探索</span>
+      <p class="q-text">現在のスコアが高い項目には、どんな工夫やリソースがありますか？ それを他の領域に活かせるとしたら？</p>
+    </li>
+    <li>
+      <span class="q-context">次の一歩</span>
+      <p class="q-text">もし1つだけ、3ヶ月で1点上げるとしたらどの項目ですか？ なぜそれを選びましたか？</p>
+    </li>
+  </ol>
+</section>
+
+<!-- =========================================================
+     CHAPTER 6 part 2: continuing sessions
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 6 · Continuing Sessions</div>
+  <h1>継続セッションで使う5つ</h1>
+
+  <p class="lede">
+    2回目以降のセッションでは、変化と停滞の両方に光を当てる問いが効きます。
+  </p>
+
+  <ol class="questions" start="6" style="counter-reset: q 5;">
+    <li>
+      <span class="q-context">前回比較</span>
+      <p class="q-text">前回○月の記入と比べて、変化のあった項目はどれですか？ 何がその変化を生みましたか？</p>
+    </li>
+    <li>
+      <span class="q-context">停滞領域</span>
+      <p class="q-text">動いていない項目があるとしたら、それはなぜでしょう？ そこに触れたくない理由はありますか？</p>
+    </li>
+    <li>
+      <span class="q-context">パターン認識</span>
+      <p class="q-text">上がる時と下がる時で、何かパターンはありますか？ 季節・時期・状況など。</p>
+    </li>
+    <li>
+      <span class="q-context">メタ認知</span>
+      <p class="q-text">このスコアの付け方そのものが、前回と比べて変わったと感じますか？ もしそうなら、何が変わったのでしょう。</p>
+    </li>
+    <li>
+      <span class="q-context">行動の検証</span>
+      <p class="q-text">前回設定したアクションは、どの項目にどう影響しましたか？ 想定通り、想定外、両方ありますか？</p>
+    </li>
+  </ol>
+</section>
+
+<!-- =========================================================
+     CHAPTER 6 part 3: closing
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 6 · Closing & Reflection</div>
+  <h1>振り返り・終結時に使う5つ</h1>
+
+  <p class="lede">
+    契約期間の最後や、ある区切りを迎えるタイミングでは、変化を統合する問いが鍵になります。
+  </p>
+
+  <ol class="questions" start="11" style="counter-reset: q 10;">
+    <li>
+      <span class="q-context">変化の言語化</span>
+      <p class="q-text">最初の記入と今回の記入、形を見比べて何を感じますか？ ご自身にどんな変化が起きていますか？</p>
+    </li>
+    <li>
+      <span class="q-context">学びの抽出</span>
+      <p class="q-text">この期間で、自分について新しく分かったことは何ですか？ それはこのホイールのどこに表れていますか？</p>
+    </li>
+    <li>
+      <span class="q-context">自己受容</span>
+      <p class="q-text">変えたかったのに変わらなかった項目があるとしたら、今、その項目に対してどう感じますか？</p>
+    </li>
+    <li>
+      <span class="q-context">次フェーズ</span>
+      <p class="q-text">次の3ヶ月、6ヶ月、1年で大切にしたい項目はどれですか？ それは今までと同じですか、変わりましたか？</p>
+    </li>
+    <li>
+      <span class="q-context">祝福</span>
+      <p class="q-text">自分を褒めたい項目はありますか？ そこに至るまで、どんな自分の選択があったでしょう。</p>
+    </li>
+  </ol>
+</section>
+
+<!-- =========================================================
+     CHAPTER 7
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 7</div>
+  <h1>継続記入で変化を追う</h1>
+
+  <p class="lede">
+    バランスホイールは「1回きり」より「定点観測」で価値を最大化します。コーチングの効果測定にも直結します。
+  </p>
+
+  <h2>推奨ペース</h2>
+  <ul>
+    <li><strong>3ヶ月ごと</strong>に再記入（クライアントとの契約期間に合わせて）</li>
+    <li>大きな出来事（転職・結婚・引越等）の後にも追加記入</li>
+  </ul>
+
+  <h2>比較の見方</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">観察ポイント</th>
+        <th>コーチの問い</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>全体の形の変化</strong></td>
+        <td>「どんな違いを感じますか？」</td>
+      </tr>
+      <tr>
+        <td><strong>上がった項目</strong></td>
+        <td>「何がその変化を生んだと思いますか？」</td>
+      </tr>
+      <tr>
+        <td><strong>下がった項目</strong></td>
+        <td>「ここに触れたくない時期だったかもしれません。何があったでしょう？」</td>
+      </tr>
+      <tr>
+        <td><strong>動かなかった項目</strong></td>
+        <td>「変えたかったのに変わらなかった、という事実をどう感じますか？」</td>
+      </tr>
+      <tr>
+        <td><strong>理想スコアの変化</strong></td>
+        <td>「理想自体が変わった項目はありますか？ それは成長のサインかも」</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pullquote">
+    スコアの上下より、<br>「自分の変化を自分で観察する習慣」を<br>育てることが本質。
+  </div>
+</section>
+
+<!-- =========================================================
+     PART 3 DIVIDER
+     ========================================================= -->
+<section class="page">
+  <div class="part-divider">
+    <div class="part-divider__left">
+      <div class="part-divider__number">03</div>
+      <div class="part-divider__label">Part Three</div>
+      <h1 class="part-divider__title">配布ツール完全ガイド</h1>
+    </div>
+    <p class="part-divider__lede">
+      クライアントが実際に触れる画面を、コーチも知っておく。<br>当日のセッションでスムーズに対話に入るための画面ガイドです。
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 8
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 8 · Client Experience</div>
+  <h1>クライアントの入力体験</h1>
+
+  <p class="lede">
+    クライアントがツールを開いてから完了するまでの5ステップ。3分で完了する設計です。
+  </p>
+
+  <ol style="line-height: 2;">
+    <li><strong>URLを開く</strong> ─ スマホ/PCのブラウザでアクセス。インストール・ログイン不要</li>
+    <li><strong>お名前と日付を入力</strong> ─ 任意。コーチに送るときに「いつ・誰の」が一目でわかる</li>
+    <li><strong>各項目のスライダーを動かす</strong> ─ 8項目それぞれに「現在」「理想」のスコア（0〜10）</li>
+    <li><strong>気づきメモを書く</strong> ─ スコアを付けて感じたこと、変えたいことを自由記述</li>
+    <li><strong>シェア表示モード or 印刷で保存</strong> ─ コーチに送れる状態にする</li>
+  </ol>
+
+  <figure>
+    <img src="screenshots/desktop-main-firstview.png" alt="ツールのメイン入力画面（PC表示）">
+    <figcaption>図1. PC で開いたメイン入力画面 ─ チャートとスライダーが連動</figcaption>
+  </figure>
+</section>
+
+<!-- =========================================================
+     CHAPTER 9
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 9 · Share Mode</div>
+  <h1>シェア表示モードの使い方</h1>
+
+  <p class="lede">
+    スマホでスクリーンショットを撮るとき、編集UIを隠して「結果だけ」をスマホ1画面に収めるモードです。
+  </p>
+
+  <h2>4ステップ</h2>
+  <ol>
+    <li>ツールで全項目入力後、画面下部の <strong>「📤 シェア表示にする」</strong> ボタンをタップ</li>
+    <li>編集UI（スライダー等）が消え、結果だけが表示される</li>
+    <li>その状態でスクリーンショット → コーチに送信</li>
+    <li>編集に戻る場合は画面上部の <strong>「← 編集に戻る」</strong> をタップ</li>
+  </ol>
+
+  <div class="callout">
+    <span class="callout__label">Pro Tip</span>
+    <h3 class="callout__title">スマホでも PDF 保存可能</h3>
+    <p>シェア表示中、または通常画面の「印刷 / PDF保存」ボタンから:<br>
+    <strong>iPhone:</strong> 共有 → 「ファイルに保存」 → PDF が Files に保存<br>
+    <strong>Android:</strong> プリンタ選択画面で「PDF として保存」</p>
+  </div>
+
+  <div class="phone-mockup">
+    <img src="screenshots/mobile-share-mode-firstview.png" alt="シェア表示モードの画面（スマホ）">
+  </div>
+  <p class="text-center text-muted" style="font-size: 9pt; margin-top: 2mm;">
+    図2. シェア表示モード ─ 編集UIが隠れ、結果のみ表示
+  </p>
+</section>
+
+<!-- =========================================================
+     CHAPTER 10
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Chapter 10 · Reading the Wheel</div>
+  <h1>コーチがスコアを読む3つの視点</h1>
+
+  <p class="lede">
+    クライアントから受け取ったスコアを、コーチはどう「読む」か。3つのレンズを意識すると深まります。
+  </p>
+
+  <h2>視点1: 全体の「形」を見る</h2>
+  <ul>
+    <li>円形に近いか、極端に偏っているか</li>
+    <li>偏りはどの方向か（仕事側 vs 家族側、外向 vs 内省、など）</li>
+    <li><strong>「綺麗な円ほど良い」とは限らない</strong>（クライアントのフェーズ次第）</li>
+  </ul>
+
+  <h2>視点2: 現在と理想の「差」を見る</h2>
+  <ul>
+    <li>差が大きい項目は、<strong>今クライアントが言語化したい焦点</strong></li>
+    <li>差がゼロの項目は、満足 or 諦め、どちらか対話で確認</li>
+    <li>全項目の差が均等なら、「全体的な不満」のサインかも</li>
+  </ul>
+
+  <h2>視点3: 「触れない項目」を見る</h2>
+  <ul>
+    <li>スコアを付けるのを迷っていた項目はあるか</li>
+    <li>メモ欄に何も書かれていない項目は何か</li>
+    <li>それらは<strong>まだ言語化準備が整っていない領域</strong>かもしれない</li>
+  </ul>
+
+  <div class="callout">
+    <span class="callout__label">Avoid This</span>
+    <h3 class="callout__title">数字だけでアドバイスしない</h3>
+    <p>スコアの数字だけで「だから○○すべき」とアドバイスすることは避けましょう。スコアは<strong>対話を始める入口</strong>であって、診断結果ではありません。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     PART 4 DIVIDER
+     ========================================================= -->
+<section class="page">
+  <div class="part-divider">
+    <div class="part-divider__left">
+      <div class="part-divider__number">04</div>
+      <div class="part-divider__label">Part Four</div>
+      <h1 class="part-divider__title">付録</h1>
+    </div>
+    <p class="part-divider__lede">
+      実務で使える補助資料一式。<br>テンプレ・ケーススタディ・倫理ガイド・印刷用ホイールなど、明日から現場で活きる資料を集めました。
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX A: Templates (continued/extended)
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix A</div>
+  <h1>クライアント送付メッセージ・テンプレ集</h1>
+
+  <p class="lede">
+    Chapter 5 のスクリプトに加えて、特殊シーンで使えるテンプレを2種類掲載します。
+  </p>
+
+  <div class="script-label">SHORT VERSION ─ LINE/Slack向け（最小限）</div>
+  <div class="script">○○さん
+次回までに「人生の輪」を試してもらえますか？
+3分で終わります。
+<a href="https://balance-wheel-tool.vercel.app/" target="_blank">https://balance-wheel-tool.vercel.app/</a>
+完了したら結果のスクショをお送りください。</div>
+
+  <div class="script-label">TEAM COACHING VERSION ─ チーム/グループ向け</div>
+  <div class="script">チームの皆様
+
+来週のセッション前に、各自で「人生の輪」を
+記入してきてください（個人ワーク）。
+共有は任意です。
+
+URL: <a href="https://balance-wheel-tool.vercel.app/" target="_blank">https://balance-wheel-tool.vercel.app/</a>
+
+当日は、共有可能な範囲で気づきを言語化する
+時間を取ります。</div>
+
+  <div class="callout">
+    <span class="callout__label">運用のコツ</span>
+    <h3 class="callout__title">「強制」感を出さない</h3>
+    <p>「事前にやってきてください」より「<strong>もしお時間あれば</strong>」の方が完了率が高い、というコーチからの実感報告があります。やらされ感がない方が、当日のクライアントの体験も豊かになります。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX B-1: Case Study
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix B · Case Study 1/3</div>
+  <h1>30代経営者・佐藤さんのケース</h1>
+
+  <div class="case">
+    <div class="case__header">
+      <div class="case__id">01</div>
+      <div>
+        <div class="case__name">佐藤さん</div>
+        <div class="case__attr">30代・スタートアップ経営者・既婚・子1人</div>
+      </div>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">入力結果</span>
+      <p>仕事・キャリア: <strong>9</strong> / 理想 9 ／ 家族: <strong>3</strong> / 理想 8（差5）<br>
+      健康: <strong>4</strong> / 理想 7 ／ 心の充実: <strong>5</strong> / 理想 8 ／ その他: 6前後</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">コーチの問い</span>
+      <p>「仕事は理想とぴったり一致していますね。一方で家族との差5は何が表れているのでしょう？」</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">クライアントの言葉</span>
+      <p class="case__quote">家族との時間を犠牲にして仕事を取ってきた。それが正解だと思っていたが、最近、息子と話す時間が減ったことに気付いた。</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">3ヶ月後の変化</span>
+      <ul>
+        <li>家族: 3 → 5（理想は8のまま）</li>
+        <li>仕事: 9 → 8（少し意識的に下げた）</li>
+        <li>アクション: 週1回、息子と1時間の散歩を始めた</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">Coach's Reflection</span>
+    <h3 class="callout__title">学んだこと</h3>
+    <p>仕事スコアが「理想と完全一致」していた状態は、実は<strong>他領域を犠牲にした不健全な高得点</strong>だった可能性。「現在 = 理想」だからといって安心せず、その背景を問う必要があります。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX B-2
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix B · Case Study 2/3</div>
+  <h1>50代女性・山田さんのケース</h1>
+
+  <div class="case">
+    <div class="case__header">
+      <div class="case__id">02</div>
+      <div>
+        <div class="case__name">山田さん</div>
+        <div class="case__attr">50代・パート勤務・夫と2人暮らし・子は独立</div>
+      </div>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">入力結果</span>
+      <p>全項目 <strong>4〜5 でほぼ均等</strong></p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">コーチの問い</span>
+      <p>「全体的に同じくらいの点数ですね。これはご自身にとってどんな状態ですか？」</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">クライアントの言葉</span>
+      <p class="case__quote">特に不満はないけど、特にワクワクすることもない。なんとなくの毎日が続いている。</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">追加の問い</span>
+      <p>「もし1つだけ点数を上げるとしたら、どの項目ですか？」<br>「逆に、何があれば点数を下げてもいいと思える項目はありますか？」</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">気づき</span>
+      <p>均等なスコアは「<strong>バランスが取れている</strong>」ではなく「<strong>情熱の対象が見つかっていない</strong>」サインだった。</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">3ヶ月後の変化</span>
+      <p>「自己成長」を起点に、新しい学びを試行錯誤する3ヶ月に。<br>9月時点で自己成長 7、心の充実 6 へ上昇。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">Coach's Reflection</span>
+    <h3 class="callout__title">学んだこと</h3>
+    <p>均等な4-5は要注意シグナル。<strong>「平和」と「停滞」は紙一重</strong>。バランスではなく「躍動感のなさ」を見抜く視点も持っておきたい。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX B-3
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix B · Case Study 3/3</div>
+  <h1>20代若手・田中さんのケース</h1>
+
+  <div class="case">
+    <div class="case__header">
+      <div class="case__id">03</div>
+      <div>
+        <div class="case__name">田中さん</div>
+        <div class="case__attr">20代後半・IT企業勤務・独身・キャリア志向</div>
+      </div>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">入力結果</span>
+      <p>自己成長: <strong>9</strong> / 理想 10 ／ 仕事・キャリア: <strong>8</strong> / 理想 10<br>
+      健康: <strong>3</strong> / 理想 7 ／ 趣味・余暇: <strong>2</strong> / 理想 6 ／ 家族: 5 / 理想 5</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">コーチの問い</span>
+      <p>「自己成長と仕事、すごく頑張っていますね。一方で健康と趣味の理想とのギャップが目立ちます。これはどんな状態ですか？」</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">クライアントの言葉</span>
+      <p class="case__quote">成長したい一心で、休まず動いている。最近、朝起きるのがしんどい。</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">コーチの判断</span>
+      <p><strong>燃え尽きの初期サイン</strong>。「成長を諦めて休め」ではなく、「<strong>持続可能な成長にはどんな条件が必要か</strong>」を一緒に探る対話へ。</p>
+    </div>
+
+    <div class="case__block">
+      <span class="case__block-label">3ヶ月後の変化</span>
+      <ul>
+        <li>健康: 3 → 6（睡眠時間と運動を見直し）</li>
+        <li>自己成長: 9 → 8（量より質へシフト、結果として理解度が上がった）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">Coach's Reflection</span>
+    <h3 class="callout__title">学んだこと</h3>
+    <p>高スコア項目に「<strong>がんばり屋ゆえの危うさ</strong>」が隠れていることがある。「9点以上」が必ずしも健全ではないことを、低い項目と組み合わせて読むことで見えてくる。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX C: When NOT to use
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix C · Ethics & Limits</div>
+  <h1>使ってはいけない場面・注意点</h1>
+
+  <p class="lede">
+    優れたツールほど、<strong>使うべきでない場面</strong>を見極める力が問われます。誠実なコーチであるために、本ツールの限界も併せて知っておきましょう。
+  </p>
+
+  <h2>避けるべき場面</h2>
+
+  <div style="margin: 6mm 0;">
+    <h3 style="color: var(--accent-coral);">✕ 強い感情危機にあるとき</h3>
+    <p>うつ・喪失・トラウマ反応の急性期では、数値化が「自分のダメさ」を強調する作用を持ちうる。</p>
+
+    <h3 style="color: var(--accent-coral);">✕ クライアントが数値化に強い抵抗を示すとき</h3>
+    <p>「点数を付けるのが嫌い」「自分を測られている感じがする」と感じる方には、別のワーク（バリューカード、未来手紙等）を選ぶ。</p>
+
+    <h3 style="color: var(--accent-coral);">✕ 時間がない時の駆け込みワーク</h3>
+    <p>「とりあえず埋めて」では入力するだけで対話に繋がらず、クライアントが「やらされ感」だけを持ち帰るリスク。</p>
+
+    <h3 style="color: var(--accent-coral);">✕ コーチが指摘するためのツールとして使うとき</h3>
+    <p>「ここが低いですね、どうしましょう？」というアプローチは、クライアントの自己決定を奪う。</p>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">Safe Use Principles</span>
+    <h3 class="callout__title">安全に使うための4原則</h3>
+    <p>
+    <strong>① 入力は強制せず、断られたら別の方法を提案</strong><br>
+    <strong>② スコアは「診断」ではなく「対話の入口」と明確に伝える</strong><br>
+    <strong>③ コーチが解釈を押し付けず、クライアントの言葉を待つ</strong><br>
+    <strong>④ メモ欄やセッション中の発言の方が、スコア数字より雄弁</strong>
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX D: ICF Competencies
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix D</div>
+  <h1>ICF コア・コンピテンシー対応表</h1>
+
+  <p class="lede">
+    バランスホイールが特に支える ICF コア・コンピテンシー（2024年版）を整理しました。資格更新時の振り返りや、自己評価の参照にご活用ください。
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 38%;">ICF コンピテンシー</th>
+        <th>バランスホイールでの実現方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>3. 合意の確立と維持</strong></td>
+        <td>8項目から「今回扱いたいテーマ」をクライアント主導で選ぶ</td>
+      </tr>
+      <tr>
+        <td><strong>5. 在り方の体現</strong></td>
+        <td>スコアを評価せず、好奇心と無条件の肯定で受け取る</td>
+      </tr>
+      <tr>
+        <td><strong>6. アクティブリスニング</strong></td>
+        <td>スコア数字より「なぜそう感じたか」の語りに耳を傾ける</td>
+      </tr>
+      <tr>
+        <td><strong>7. 気づきの喚起</strong></td>
+        <td>「思っていたより低い/高い」項目への問いで、自己認識を深める</td>
+      </tr>
+      <tr>
+        <td><strong>8. クライアントの成長を促進</strong></td>
+        <td>3ヶ月ごとの再記入で、変化と学びをクライアント自身が言語化</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>PCC マーカーとの接続例</h2>
+
+  <div class="callout">
+    <span class="callout__label">PCC 4.5</span>
+    <h3 class="callout__title">クライアントの言葉や感情の背後にあるものを探求する</h3>
+    <p>スコアの数字の背後にある<strong>感情・出来事・パターン</strong>に焦点を当てる。「なぜ4と感じたのか」を問うことで、表層的な評価を超えた対話が始まる。</p>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">PCC 7.5</span>
+    <h3 class="callout__title">クライアントが新しい学習や洞察をどう統合するかを支援する</h3>
+    <p>再記入セッションで、<strong>前回からの変化を統合的に振り返る</strong>。「変化のプロセスから何を学んだか」「次にどう活かすか」を問う。</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     APPENDIX E: Printable Wheel
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix E · Printable</div>
+  <h1>紙の印刷用ホイール</h1>
+
+  <p class="lede">
+    デジタルが苦手なクライアント、または対面セッションで使う用に、印刷可能な空白ホイールを用意しました。このページを A4 で印刷してご利用ください。
+  </p>
+
+  <h2>使い方</h2>
+  <ol>
+    <li>このページを A4 で印刷（白黒で十分）</li>
+    <li>各領域に 0〜10 のスコアをペンで記入</li>
+    <li>同心円上に印を付け、線で結んでホイール形を描く</li>
+  </ol>
+
+  <svg viewBox="0 0 400 400" class="wheel-print" xmlns="http://www.w3.org/2000/svg">
+    <!-- Concentric circles -->
+    <circle cx="200" cy="200" r="30" fill="none" stroke="#888" stroke-width="0.5" />
+    <circle cx="200" cy="200" r="60" fill="none" stroke="#888" stroke-width="0.5" />
+    <circle cx="200" cy="200" r="90" fill="none" stroke="#888" stroke-width="0.5" />
+    <circle cx="200" cy="200" r="120" fill="none" stroke="#888" stroke-width="0.5" />
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#444" stroke-width="1.2" />
+    <!-- Spokes -->
+    <line x1="200" y1="50" x2="200" y2="350" stroke="#444" stroke-width="0.8" />
+    <line x1="50" y1="200" x2="350" y2="200" stroke="#444" stroke-width="0.8" />
+    <line x1="93.93" y1="93.93" x2="306.07" y2="306.07" stroke="#444" stroke-width="0.8" />
+    <line x1="306.07" y1="93.93" x2="93.93" y2="306.07" stroke="#444" stroke-width="0.8" />
+    <!-- Labels -->
+    <text x="200" y="40" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">健康</text>
+    <text x="320" y="100" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">仕事・キャリア</text>
+    <text x="365" y="205" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">家族</text>
+    <text x="320" y="315" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">人間関係</text>
+    <text x="200" y="375" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">趣味・余暇</text>
+    <text x="80" y="315" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">自己成長</text>
+    <text x="35" y="205" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">お金</text>
+    <text x="80" y="100" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="600" fill="#222">心の充実</text>
+    <!-- Score numbers on top spoke as guide (中心=0, 外周=10) -->
+    <text x="208" y="173" font-family="Inter, sans-serif" font-size="8" fill="#888">2</text>
+    <text x="208" y="143" font-family="Inter, sans-serif" font-size="8" fill="#888">4</text>
+    <text x="208" y="113" font-family="Inter, sans-serif" font-size="8" fill="#888">6</text>
+    <text x="208" y="83" font-family="Inter, sans-serif" font-size="8" fill="#888">8</text>
+    <text x="208" y="53" font-family="Inter, sans-serif" font-size="8" fill="#888">10</text>
+  </svg>
+
+  <p class="text-center text-muted" style="font-size: 9pt;">
+    中心が 0、外周が 10。同心円のスケール幅は 2 ずつ。
+  </p>
+</section>
+
+<!-- =========================================================
+     APPENDIX F: MetaMentor Services
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Appendix F</div>
+  <h1>MetaMentor サービス紹介</h1>
+
+  <p class="lede">
+    本書で紹介したバランスホイールツール以外にも、コーチの「現場をもっと楽に」を支える無料サービスを揃えています。
+  </p>
+
+  <div class="service">
+    <div class="service__icon">🤖</div>
+    <div class="service__body">
+      <h3 class="service__name">コーチング AI（MetaMentor CRM × AI）</h3>
+      <p class="service__desc">日本初のコーチングCRM × AI。セッション音声をアップするだけで、AIが文字起こし・要約・ICFのPCCマーカー分析まで自動化。記録の手間から解放され、AIフィードバックで上達も加速。</p>
+      <a class="service__url" href="https://metamentor.tech/product/crm/" target="_blank">▸ metamentor.tech/product/crm/</a>
+    </div>
+  </div>
+
+  <div class="service">
+    <div class="service__icon">📋</div>
+    <div class="service__body">
+      <h3 class="service__name">セッションマネージャー</h3>
+      <p class="service__desc">予約管理・Zoom URL自動発行・カレンダー連携・セッション記録までワンストップ。複数ツールを行き来する手作業から解放され、本業のコーチングに集中できる毎日へ。</p>
+      <a class="service__url" href="https://metamentor.tech/product/sm/" target="_blank">▸ metamentor.tech/product/sm/</a>
+    </div>
+  </div>
+
+  <div class="service">
+    <div class="service__icon">🌱</div>
+    <div class="service__body">
+      <h3 class="service__name">ウェルビーイング診断</h3>
+      <p class="service__desc">クライアントの「今の状態」と「セッション前後の変化」を5分で可視化。早稲田大学・大月友教授（臨床心理士）監修の25因子診断で、コーチング効果を客観データとして示せる。</p>
+      <a class="service__url" href="https://wellbeing.metamentor.tech/" target="_blank">▸ wellbeing.metamentor.tech</a>
+    </div>
+  </div>
+
+  <div class="service">
+    <div class="service__icon">📖</div>
+    <div class="service__body">
+      <h3 class="service__name">WELLBEING MAGAZINE</h3>
+      <p class="service__desc">最新論文の解説、ICF/PCC試験対策、現場の実践事例まで。対人支援者向けに編集された記事を週次で更新。</p>
+      <a class="service__url" href="https://metamentor.tech/magazine/" target="_blank">▸ metamentor.tech/magazine/</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     AUTHOR / COLOPHON
+     ========================================================= -->
+<section class="page">
+  <div class="section-eyebrow">Colophon</div>
+  <h1>著者・問い合わせ</h1>
+
+  <div class="author-card">
+    <div class="author-card__name">小泉 領雄南</div>
+    <div class="author-card__title">株式会社メタメンター 代表取締役</div>
+    <ul style="margin: 0; padding-left: 1.4em;">
+      <li>ICF認定PCCコーチ</li>
+      <li>早稲田大学大学院 経営管理研究科 修了（MBA）</li>
+      <li>上場企業経営経験</li>
+    </ul>
+  </div>
+
+  <h2>会社情報</h2>
+  <table>
+    <tbody>
+      <tr><td style="width: 30%;"><strong>会社名</strong></td><td>株式会社メタメンター（MetaMentor, Inc.）</td></tr>
+      <tr><td><strong>設立</strong></td><td>2022年6月10日</td></tr>
+      <tr><td><strong>事業</strong></td><td>コーチング・ウェルビーイング・事業承継のDX</td></tr>
+    </tbody>
+  </table>
+
+  <h2>本書について</h2>
+  <table>
+    <tbody>
+      <tr><td style="width: 30%;"><strong>配布ツール</strong></td><td><a href="https://balance-wheel-tool.vercel.app/" target="_blank">balance-wheel-tool.vercel.app</a></td></tr>
+      <tr><td><strong>問い合わせ・バグ報告</strong></td><td><a href="https://metamentor.tech/#contact" target="_blank">metamentor.tech/#contact</a></td></tr>
+      <tr><td><strong>初版発行</strong></td><td>2026年5月</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note" style="margin-top: 8mm;">
+    本書の内容は、対人支援の専門家による実践と、関連する学術研究を踏まえて編纂されています。クライアントとの実践においては、本書の内容を参考にしつつ、最終的な判断はコーチご自身の専門性と倫理規定に基づいてください。
+  </p>
+</section>
+
+<!-- =========================================================
+     CLOSING
+     ========================================================= -->
+<section class="page">
+  <div class="closing">
+    <div class="closing__line"></div>
+    <p class="closing__message">
+      明日のセッションで、<br>クライアントとともに「人生の輪」を回してみてください。
+    </p>
+    <div class="closing__line"></div>
+    <div class="closing__signature">MetaMentor, Inc. ─ 2026</div>
+  </div>
+</section>
+
+</body>
+</html>
